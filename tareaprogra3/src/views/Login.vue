@@ -28,7 +28,7 @@
                 id="cedula"
                 v-model="cedula"
                 class="form-control"
-                placeholder="Cedula"
+                placeholder="Cédula"
                 required
               />
               <INPUT type="hidden" id="token" name="token" value="" />
