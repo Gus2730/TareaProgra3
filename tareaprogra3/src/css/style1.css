@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css?family=Numans");
+
+html,
+body {
+  background-image: url("../assets/fondo.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  font-family: "Numans", sans-serif;
+}
+
+.container {
+  height: 100%;
+  align-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  height: 400px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 400px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.card-header h3 {
+  color: white;
+  text-align: center;
+}
+
+.input-group-prepend span {
+  width: 50px;
+  background-color: dodgerblue;
+  color: black;
+  border: 0 !important;
+}
+
+.login_btn {
+  font-weight: bold;
+  color: black;
+  background-color: dodgerblue !important;
+  width: 200px;
+  height: auto;
+}
+
+.login_btn:hover {
+  font-weight: bold;
+  color: black;
+  background-color: white;
+}
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+.img.avatar {
+  width: 20%;
+  border-radius: 30%;
+}
