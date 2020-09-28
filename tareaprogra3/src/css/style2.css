@@ -10,7 +10,7 @@ font-family: 'Numans', sans-serif;
 }
 
 .container{
-height: 100%;
+height: 110%;
 align-content: center;
 display: flex;
 align-items: center;
@@ -29,6 +29,7 @@ background-color: rgba(175, 104, 104, 0.5) !important;
 .card-header h3{
 color: white;
 text-align: center;
+font-size:22px;
 }
 
 .input-group-prepend span{
