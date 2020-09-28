@@ -38,6 +38,15 @@ body {
   background-color: dodgerblue;
   color: black;
   border: 0 !important;
+  font-size:20px;
+}
+.input-group-append span {
+  width: 40px;
+  height: 50;
+  /* background-color: dodgerblue; */
+  color: black;
+  border: 0 !important;
+  font-size:20px;
 }
 .form-control{
   width: 30;
