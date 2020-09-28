@@ -119,7 +119,6 @@ export default {
             // this.estado = true;
             estado1 = true;
           }
-          this.guardarToken();
           return response.json();
         })
         .then(function (data) {
@@ -128,13 +127,13 @@ export default {
           // alert(data.jwt);
           if (estado1 == true) {
             console.log("Estado: " + estado1);       
-            $("#inicio").on("@click=guardartoken(dato)", function () {
-              console.log("Acción ejecutada!");
-            });
+            // $("#inicio").on("@click=guardartoken(dato)", function () {
+            //   console.log("Acción ejecutada!");
+            // });
 
             // $("#inicio").trigger("click");
           
-            window.location.href = "/About";
+            window.location.href = "/Tramites";
           }
         })
         .catch(
