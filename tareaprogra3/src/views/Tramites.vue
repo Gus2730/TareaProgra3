@@ -109,30 +109,28 @@
                     <vs-table>
                       <template #thead>
                         <vs-tr>
-                          <vs-th>Nombre</vs-th>
                           <vs-th>Id</vs-th>
-                          <vs-th>Cedula</vs-th>
-                          <vs-th>Estado</vs-th>
-                          <vs-th>Fecha Registro </vs-th>
+                          <vs-th>cliente</vs-th>
+                          <vs-th>Tramite Tipo</vs-th>
                         </vs-tr>
                       </template>
                       <template #tbody>
                         <vs-tr :key="i" v-for="(tr, i) in tramites">
                           <vs-td>
-                            {{ tr.nombreCompleto }}
+                            {{ tr.id}}
                           </vs-td>
                           <vs-td>
-                            {{ tr.id }}
+                            {{ tr.cliente.cedula }}
                           </vs-td>
                           <vs-td>
-                            {{ tr.cedula }}
+                            {{ tr.tramiteTipo.descripcion }}
                           </vs-td>
-                          <vs-td>
+                          <!-- <vs-td>
                             {{ tr.estado }}
                           </vs-td>
                           <vs-td>
                             {{ tr.fechaRegistro }}
-                          </vs-td>
+                          </vs-td> -->
 
                           <template #expand>
                             <div class="con-content">
@@ -143,9 +141,9 @@
                                     alt=""
                                   />
                                 </vs-avatar> -->
-                                <p>
+                                <!-- <p>
                                   {{ tr.nombreCompleto }}
-                                </p>
+                                </p> -->
                               </div>
                               <div>
                                 <vs-button flat icon @click="imprimir(tr)">
@@ -245,7 +243,7 @@ export default {
       var dato;
       var tokens = sessionStorage.getItem("tok");
       console.log(tokens);
-      fetch("http://localhost:8099/usuarios", {
+      fetch("http://localhost:8099/tramites_registrados", {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
           Accept: "application/json",
@@ -272,27 +270,27 @@ export default {
           // $(document).ready(function () {
           //   $("tbody").children().remove();
 
-          //   $.each(dato, function (i, item) {
-          //     var fila =
-          //       "<tr><td>" +
-          //       dato[i].id +
-          //       "</td><td>" +
-          //       dato[i].nombreCompleto +
-          //       "</td><td>" +
-          //       dato[i].cedula +
-          //       "</td><td>" +
-          //       dato[i].estado +
-          //       "</td><td>" +
-          //       dato[i].fechaRegistro +
-          //       "</td></tr>" +
-          //       '</td><td><button type="button" v-on:click="imprimir(this)" name="remove" id="' +
-          //       dato[i].id +
-          //       '" class="btn btn-danger btn_remove">Editar</button></td></tr>';
-          //     var btn = document.createElement("TR");
-          //     btn.innerHTML = fila;
-          //     document.getElementById("contenido").appendChild(btn);
-          //   });
-          // });
+        //     $.each(dato, function (i, item) {
+        //       var fila =
+        //         "<tr><td>" +
+        //         dato[i].id +
+        //         "</td><td>" +
+        //         dato[i].tramiteTipo.id +
+        //         "</td><td>" +
+        //         dato[i].cliente.id +
+        //         "</td><td>" +
+        //         // dato[i].estado +
+        //         // "</td><td>" +
+        //         // dato[i].fechaRegistro +
+        //         // "</td></tr>" +
+        //         '</td><td><button type="button" v-on:click="imprimir(this)" name="remove" id="' +
+        //         dato[i].id +
+        //         '" class="btn btn-danger btn_remove">Editar</button></td></tr>';
+        //       var btn = document.createElement("TR");
+        //       btn.innerHTML = fila;
+        //       document.getElementById("contenido").appendChild(btn);
+        //     });
+          //  });
         })
         .catch(
           (error) => console.error("Error:", error)
@@ -305,7 +303,7 @@ export default {
           // }))
         )
         .then((response) => console.log("Success:", response));
-      console.log(this.value);
+        console.log(data);
     },
     volverLogin() {
       window.location.href = "/";
