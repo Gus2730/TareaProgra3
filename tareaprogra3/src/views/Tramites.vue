@@ -38,70 +38,40 @@
                     v-model="color.value"
                   > -->
                   <vs-select class="item" placeholder="Filtro" v-model="value">
-                    <vs-option class="item" label="Id Tramite" value="id" id="id">
+                    <vs-option
+                      class="item"
+                      label="Id Tramite"
+                      value="id"
+                      id="id"
+                    >
                       Id Tramite
                     </vs-option>
-                    <vs-option class="item" label="Estado" value="estado" id="estado">
+                    <vs-option
+                      class="item"
+                      label="Estado"
+                      value="estado"
+                      id="estado"
+                    >
                       Estado
                     </vs-option>
                     <vs-option
                       class="item"
                       label="Cedula cliente"
-                      value="cedula" id="cedula"
+                      value="cedula"
+                      id="cedula"
                     >
                       Cedula cliente
                     </vs-option>
                     <vs-option
                       class="item"
                       label="Fecha de ingreso"
-                      value="fecha" id="fecha"
+                      value="fecha"
+                      id="fecha"
                     >
                       Fecha de ingreso
                     </vs-option>
                   </vs-select>
                 </div>
-                <!-- <div class="inner-form">
-                  <div class="input-field first-wrap">
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-danger dropdown-toggle"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        Filtro
-                      </button>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item" value="id" id="id" href="#"
-                          >Id Tramite</a
-                        >
-                        <a
-                          class="dropdown-item"
-                          value="estado"
-                          id="estado"
-                          href="#"
-                        >
-                          Estado</a
-                        >
-                        <a
-                          class="dropdown-item"
-                          value="cedula"
-                          id="cedula"
-                          href="#"
-                          >Cedula cliente</a
-                        >
-                        <a
-                          class="dropdown-item"
-                          value="fecha"
-                          id="fecha"
-                          href="#"
-                          >Fecha de ingreso</a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
               </div>
               <div class="mt-5">
                 <div class="table-responsive table-light table-bordered">
@@ -117,7 +87,7 @@
                       <template #tbody>
                         <vs-tr :key="i" v-for="(tr, i) in tramites">
                           <vs-td>
-                            {{ tr.id}}
+                            {{ tr.id }}
                           </vs-td>
                           <vs-td>
                             {{ tr.cliente.cedula }}
@@ -149,9 +119,6 @@
                                 <vs-button flat icon @click="imprimir(tr)">
                                   Editar
                                 </vs-button>
-                                <!-- <vs-button border danger>
-                                  Remove User
-                                </vs-button> -->
                               </div>
                             </div>
                           </template>
@@ -160,21 +127,6 @@
                     </vs-table>
                   </div>
                 </div>
-                <!-- <div class="table-responsive">
-                  <table class="table table-dark table-bordered table-hover">
-                    <thead>
-                      <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">cedula</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Fecha registro</th>
-                        <th scope="col">Accion</th>
-                      </tr>
-                    </thead>
-                    <tbody id="contenido"></tbody>
-                  </table>
-                </div> -->
               </div>
             </form>
           </div>
@@ -267,30 +219,6 @@ export default {
           this.tramites = null;
           this.tramites = data;
           dato = data;
-          // $(document).ready(function () {
-          //   $("tbody").children().remove();
-
-        //     $.each(dato, function (i, item) {
-        //       var fila =
-        //         "<tr><td>" +
-        //         dato[i].id +
-        //         "</td><td>" +
-        //         dato[i].tramiteTipo.id +
-        //         "</td><td>" +
-        //         dato[i].cliente.id +
-        //         "</td><td>" +
-        //         // dato[i].estado +
-        //         // "</td><td>" +
-        //         // dato[i].fechaRegistro +
-        //         // "</td></tr>" +
-        //         '</td><td><button type="button" v-on:click="imprimir(this)" name="remove" id="' +
-        //         dato[i].id +
-        //         '" class="btn btn-danger btn_remove">Editar</button></td></tr>';
-        //       var btn = document.createElement("TR");
-        //       btn.innerHTML = fila;
-        //       document.getElementById("contenido").appendChild(btn);
-        //     });
-          //  });
         })
         .catch(
           (error) => console.error("Error:", error)
@@ -303,7 +231,6 @@ export default {
           // }))
         )
         .then((response) => console.log("Success:", response));
-        console.log(data);
     },
     volverLogin() {
       window.location.href = "/";
@@ -316,7 +243,7 @@ export default {
   created: function () {
     // var casa=this.value;
     // $(document).ready(function () {
-    //   $(document).on("click", ".item", function () {     
+    //   $(document).on("click", ".item", function () {
     //     var selected = $(this).attr("value");
     //     console.log(selected);
     //     if (selected== "id") {
