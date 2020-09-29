@@ -86,7 +86,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["SET_TOKEN1"]),
+    // ...mapActions(["SET_TOKEN1"]),
     inicio() {
       let dato = "";
       let estado1 = false;
@@ -119,13 +119,10 @@ export default {
         })
         .then((data) => {
           dato = data.jwt;
-          // document.getElementById("token").value = data.jwt;
-          // alert(data.jwt);
+          sessionStorage.setItem('tok', dato);
           if (estado1 == true) {
             console.log("Estado: " + estado1);
-            // this.guardarToken("coco");
-
-            window.location.href = "/About";
+            window.location.href = "/Tramites";
           }
         })
         .catch(
@@ -150,9 +147,9 @@ export default {
         $(".icon").removeClass("fa fa-eye").addClass("fa fa-eye-slash");
       }
     },
-    guardarToken(caso) {
-      this.SET_TOKEN1(caso);
-    },
+    // guardarToken(caso) {
+    //   this.SET_TOKEN1(caso);
+    // },
   },
 };
 require("@/css/style1.css");

@@ -72,8 +72,8 @@
                 </div>
               </div>
               <div class="mt-5">
-          
-                  <div class="center">
+                <div class="table-responsive table-light table-bordered">
+                  <div class="center " >
                     <vs-table>
                       <template #thead>
                         <vs-tr>
@@ -127,7 +127,7 @@
                       </template>
                     </vs-table>
                   </div>
-               
+                </div>
                 <!-- <div class="table-responsive">
                   <table class="table table-dark table-bordered table-hover">
                     <thead>
@@ -185,14 +185,14 @@ export default {
   methods: {
     Conseguir() {
       var dato;
-      let tok=this.token;
-      console.log(tok);
+      var tokens =  sessionStorage.getItem("tok");
+      console.log(tokens);
       fetch("http://localhost:8099/usuarios", {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
           Accept: "application/json",
           Authorization:
-            "bearer " + tok
+            "bearer " + tokens
             
         },
       })
@@ -209,17 +209,7 @@ export default {
           }
           return response.json();
         })
-        .then((data) => {
-          //    Vue.http.get('/notifications').then((response) => {
-
-          //     console.log(response.data);
-          //     this.tramites = response.data;
-          //     //this.notifications.push(response.data);
-
-          //     this.message = "This is a message";
-
-          //     console.log(this.message);
-          // });
+        .then((data) => {   
           this.tramites=null;
           this.tramites = data;
           dato = data;
