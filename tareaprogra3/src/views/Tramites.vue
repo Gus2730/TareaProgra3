@@ -28,12 +28,21 @@
                   </button>
                 </div>
                 <div><br /></div>
+                <!-- <div class="examplex">
+                  <vs-button class="btnx" type="filled">Dropdown</vs-button>       
+                  <vs-dropdown>      
+                    <vs-dropdown-menu>
+                      <vs-dropdown-item> Home </vs-dropdown-item>
+                      <vs-dropdown-item> Contributors </vs-dropdown-item>
+                    </vs-dropdown-menu>
+                  </vs-dropdown>
+                </div> -->
                 <div class="inner-form">
                   <div class="input-field first-wrap">
                     <div class="btn-group">
                       <button
                         type="button"
-                        class="btn btn-danger dropdown-toggle"
+                        class="btn btn-info dropdown-toggle"
                         data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false"
@@ -73,7 +82,7 @@
               </div>
               <div class="mt-5">
                 <div class="table-responsive table-light table-bordered">
-                  <div class="center " >
+                  <div class="center">
                     <vs-table>
                       <template #thead>
                         <vs-tr>
@@ -115,7 +124,7 @@
                                   {{ tr.nombreCompleto }}
                                 </p>
                               </div>
-                              <div>                              
+                              <div>
                                 <vs-button flat icon> Editar </vs-button>
                                 <!-- <vs-button border danger>
                                   Remove User
@@ -179,21 +188,20 @@ export default {
       titulo: "Trámites",
       tramites: [],
     };
-  },computed: {
-    ...mapState(["token"])
+  },
+  computed: {
+    ...mapState(["token"]),
   },
   methods: {
     Conseguir() {
       var dato;
-      var tokens =  sessionStorage.getItem("tok");
+      var tokens = sessionStorage.getItem("tok");
       console.log(tokens);
       fetch("http://localhost:8099/usuarios", {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
           Accept: "application/json",
-          Authorization:
-            "bearer " + tokens
-            
+          Authorization: "bearer " + tokens,
         },
       })
         .then(function (response) {
@@ -209,8 +217,8 @@ export default {
           }
           return response.json();
         })
-        .then((data) => {   
-          this.tramites=null;
+        .then((data) => {
+          this.tramites = null;
           this.tramites = data;
           dato = data;
           // $(document).ready(function () {
