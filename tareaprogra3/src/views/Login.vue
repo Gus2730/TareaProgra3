@@ -73,7 +73,6 @@
   </div>
 </template>
 <script>
-
 import { mapActions, mapMutations } from "vuex";
 import store from "vuex";
 export default {
@@ -83,15 +82,14 @@ export default {
       titulo1: "Inicio sesion",
       contra: "",
       cedula: "",
-      token: "",
-      estado: false,
+
     };
   },
   methods: {
     ...mapActions(["SET_TOKEN1"]),
     inicio() {
-      var dato = "";
-      let estado1 = false;    
+      let dato = "";
+      let estado1 = false;
       fetch("http://localhost:8099/login/login", {
         method: "POST",
         body: JSON.stringify({
@@ -105,7 +103,6 @@ export default {
       })
         .then(function (response) {
           if (response.status != 200) {
-            // this.estado = false;
             estado1 = false;
             Swal.fire({
               icon: "error",
@@ -116,24 +113,19 @@ export default {
               timer: 10000,
             });
           } else {
-            // this.estado = true;
             estado1 = true;
           }
           return response.json();
         })
-        .then(function (data) {
+        .then((data) => {
           dato = data.jwt;
           // document.getElementById("token").value = data.jwt;
           // alert(data.jwt);
           if (estado1 == true) {
-            console.log("Estado: " + estado1);       
-            // $("#inicio").on("@click=guardartoken(dato)", function () {
-            //   console.log("Acción ejecutada!");
-            // });
+            console.log("Estado: " + estado1);
+            // this.guardarToken("coco");
 
-            // $("#inicio").trigger("click");
-          
-            window.location.href = "/Tramites";
+            window.location.href = "/About";
           }
         })
         .catch(
@@ -146,10 +138,7 @@ export default {
           //     timer: 20000})
         )
         .then((response) => console.log("Success:", response));
-
-      // if (estado == true) {
-        // this.guardarToken(dato);
-      // }
+        this.guardarToken("mario")
     },
     mostrarPassword() {
       var cambio = document.getElementById("password");
