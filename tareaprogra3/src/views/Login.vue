@@ -86,7 +86,6 @@ export default {
     };
   },
   methods: {
-    // ...mapActions(["SET_TOKEN1"]),
     inicio() {
       let dato = "";
       let estado1 = false;
@@ -135,7 +134,6 @@ export default {
           //     timer: 20000})
         )
         .then((response) => console.log("Success:", response));
-        this.guardarToken("mario")
     },
     mostrarPassword() {
       var cambio = document.getElementById("password");
@@ -147,9 +145,6 @@ export default {
         $(".icon").removeClass("fa fa-eye").addClass("fa fa-eye-slash");
       }
     },
-    // guardarToken(caso) {
-    //   this.SET_TOKEN1(caso);
-    // },
   },
 };
 require("@/css/style1.css");

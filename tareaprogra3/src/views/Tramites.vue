@@ -28,21 +28,44 @@
                   </button>
                 </div>
                 <div><br /></div>
-                <!-- <div class="examplex">
-                  <vs-button class="btnx" type="filled">Dropdown</vs-button>       
-                  <vs-dropdown>      
-                    <vs-dropdown-menu>
-                      <vs-dropdown-item> Home </vs-dropdown-item>
-                      <vs-dropdown-item> Contributors </vs-dropdown-item>
-                    </vs-dropdown-menu>
-                  </vs-dropdown>
-                </div> -->
-                <div class="inner-form">
+                <div class="center con-selects">
+                  <!-- <vs-select
+                    v-for="(color, i) in colors"
+                    :key="i"
+                    :state="color.color"
+                    :label="color.color"
+                    placeholder="Filtro"
+                    v-model="color.value"
+                  > -->
+                  <vs-select class="item" placeholder="Filtro" v-model="value">
+                    <vs-option class="item" label="Id Tramite" value="id" id="id">
+                      Id Tramite
+                    </vs-option>
+                    <vs-option class="item" label="Estado" value="estado" id="estado">
+                      Estado
+                    </vs-option>
+                    <vs-option
+                      class="item"
+                      label="Cedula cliente"
+                      value="cedula" id="cedula"
+                    >
+                      Cedula cliente
+                    </vs-option>
+                    <vs-option
+                      class="item"
+                      label="Fecha de ingreso"
+                      value="fecha" id="fecha"
+                    >
+                      Fecha de ingreso
+                    </vs-option>
+                  </vs-select>
+                </div>
+                <!-- <div class="inner-form">
                   <div class="input-field first-wrap">
                     <div class="btn-group">
                       <button
                         type="button"
-                        class="btn btn-info dropdown-toggle"
+                        class="btn btn-danger dropdown-toggle"
                         data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false"
@@ -78,7 +101,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div class="mt-5">
                 <div class="table-responsive table-light table-bordered">
@@ -125,7 +148,9 @@
                                 </p>
                               </div>
                               <div>
-                                <vs-button flat icon> Editar </vs-button>
+                                <vs-button flat icon @click="imprimir(tr)">
+                                  Editar
+                                </vs-button>
                                 <!-- <vs-button border danger>
                                   Remove User
                                 </vs-button> -->
@@ -187,6 +212,29 @@ export default {
     return {
       titulo: "Trámites",
       tramites: [],
+      value: "Ingrese su busqueda",
+      colors: [
+        // {
+        //   color: 'primary',
+        //   value: '1'
+        // },
+        // {
+        //   color: 'danger',
+        //   value: '1'
+        // },
+        // {
+        //   color: "success",
+        //   value: "2",
+        // },
+        // {
+        //   color: 'warn',
+        //   value: '3'
+        // },
+        // {
+        //   color: 'dark',
+        //   value: '4'
+        // }
+      ],
     };
   },
   computed: {
@@ -257,37 +305,41 @@ export default {
           // }))
         )
         .then((response) => console.log("Success:", response));
+      console.log(this.value);
     },
     volverLogin() {
       window.location.href = "/";
     },
     imprimir(comp) {
-      var button_id = comp.id;
+      var button_id = comp.nombreCompleto;
       alert(button_id);
     },
   },
   created: function () {
-    $(document).ready(function () {
-      $(document).on("click", ".dropdown-item", function () {
-        var selected = $(this).attr("id");
-        if (selected == "id") {
-          document.getElementById("busqueda").placeholder =
-            "Ingrese el id del tramite ha buscar";
-        }
-        if (selected == "estado") {
-          document.getElementById("busqueda").placeholder =
-            "Ingrese el estado del tramite ha buscar";
-        }
-        if (selected == "cedula") {
-          document.getElementById("busqueda").placeholder =
-            "Ingrese la cedula del tramite ha buscar";
-        }
-        if (selected == "fecha") {
-          document.getElementById("busqueda").placeholder =
-            "Ingrese la fecha de ingreso del tramite ha buscar";
-        }
-      });
-    });
+    // var casa=this.value;
+    // $(document).ready(function () {
+    //   $(document).on("click", ".item", function () {     
+    //     var selected = $(this).attr("value");
+    //     console.log(selected);
+    //     if (selected== "id") {
+    //       document.getElementById("busqueda").placeholder =
+    //         "Ingrese el id del tramite ha buscar";
+    //     }
+    //     if (selected == "estado") {
+    //       document.getElementById("busqueda").placeholder =
+    //         "Ingrese el estado del tramite ha buscar";
+    //     }
+    //     if (selected== "cedula") {
+    //       document.getElementById("busqueda").placeholder =
+    //         "Ingrese la cedula del tramite ha buscar";
+    //     }
+    //     if (selected == "fecha") {
+    //       document.getElementById("busqueda").placeholder =
+    //         "Ingrese la fecha de ingreso del tramite ha buscar";
+    //     }
+    //   });
+    // });
+    this.Conseguir();
   },
 };
 </script>
