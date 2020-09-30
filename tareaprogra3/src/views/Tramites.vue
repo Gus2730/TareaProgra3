@@ -1,35 +1,35 @@
 <template>
-   <!-- <div> -->
-    <div class="container-sm">
-      <div class="d-flex justify-content-center h-100">
-        <div class="card">
-          <div class="card-header">
-            <td></td>
-            <h3>{{ titulo }}</h3>
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="input-group form-group">
-                <input
-                  type="text"
-                  id="txtbusqueda"
-                  class="form-control"
-                  placeholder="Ingrese su busqueda"
-                  required
-                />
-                <div class="input-group-append">
-                  <button
-                    id="busqueda"
-                    class="btn btn-primary"
-                    type="button"
-                    @click="Conseguir"
-                  >
-                    <span class="fa fa-search"></span>
-                  </button>
-                </div>
-                <div><br /></div>
-                <div class="center con-selects">
-                  <!-- <vs-select
+  <!-- <div> -->
+  <div class="container-sm">
+    <div class="d-flex justify-content-center h-100">
+      <div class="card">
+        <div class="card-header">
+          <td></td>
+          <h3>{{ titulo }}</h3>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="input-group form-group">
+              <input
+                type="text"
+                id="txtbusqueda"
+                class="form-control"
+                placeholder="Ingrese su busqueda"
+                required
+              />
+              <div class="input-group-append">
+                <button
+                  id="busqueda"
+                  class="btn btn-primary"
+                  type="button"
+                  @click="Conseguir"
+                >
+                  <span class="fa fa-search"></span>
+                </button>
+              </div>
+              <div><br /></div>
+              <div class="center con-selects">
+                <!-- <vs-select
                     v-for="(color, i) in colors"
                     :key="i"
                     :state="color.color"
@@ -37,117 +37,110 @@
                     placeholder="Filtro"
                     v-model="color.value"
                   > -->
-                  <vs-select class="item" placeholder="Filtro" v-model="value">
-                    <vs-option
-                      class="item"
-                      label="Id Tramite"
-                      value="id"
-                      id="id"
-                    >
-                      Id Tramite
-                    </vs-option>
-                    <vs-option
-                      class="item"
-                      label="Estado"
-                      value="estado"
-                      id="estado"
-                    >
-                      Estado
-                    </vs-option>
-                    <vs-option
-                      class="item"
-                      label="Cedula cliente"
-                      value="cedula"
-                      id="cedula"
-                    >
-                      Cedula cliente
-                    </vs-option>
-                    <vs-option
-                      class="item"
-                      label="Fecha de ingreso"
-                      value="fecha"
-                      id="fecha"
-                    >
-                      Fecha de ingreso
-                    </vs-option>
-                  </vs-select>
-                </div>
+                <vs-select class="item" placeholder="Filtro" v-model="value">
+                  <vs-option class="item" label="Id Tramite" value="id" id="id">
+                    Id Tramite
+                  </vs-option>
+                  <vs-option
+                    class="item"
+                    label="Estado"
+                    value="estado"
+                    id="estado"
+                  >
+                    Estado
+                  </vs-option>
+                  <vs-option
+                    class="item"
+                    label="Cedula cliente"
+                    value="cedula"
+                    id="cedula"
+                  >
+                    Cedula cliente
+                  </vs-option>
+                  <vs-option
+                    class="item"
+                    label="Fecha de ingreso"
+                    value="fecha"
+                    id="fecha"
+                  >
+                    Fecha de ingreso
+                  </vs-option>
+                </vs-select>
               </div>
-              <div class="mt-5">
-                <div class="table-responsive-sm table-light table-bordered">
-                  <div class="center">
-                    <vs-table>
-                      <template #thead>
-                        <vs-tr>
-                          <vs-th>Id</vs-th>
-                          <vs-th>cliente</vs-th>
-                          <vs-th>Tramite estado</vs-th>
-                          <vs-th>Fecha registro</vs-th>
-                        </vs-tr>
-                      </template>
-                      <template #tbody>
-                        <vs-tr :key="i" v-for="(tr, i) in tramites">
-                          <vs-td>
-                            {{ tr.id }}
-                          </vs-td>
-                          <vs-td>
-                            {{ tr.tramiteRegistrado.cliente.cedula }}
-                          </vs-td>
-                          <vs-td>
-                            {{ tr.tramiteEstado.nombre }}
-                          </vs-td>
-                          <vs-td>
-                            {{ tr.fechaRegistro}}
-                          </vs-td>
-                          <!-- <vs-td>
+            </div>
+            <div class="mt-5">
+              <div class="table-responsive-sm table-light table-bordered">
+                <div class="center">
+                  <vs-table>
+                    <template #thead>
+                      <vs-tr>
+                        <vs-th>Id</vs-th>
+                        <vs-th>cliente</vs-th>
+                        <vs-th>Tramite estado</vs-th>
+                        <vs-th>Fecha registro</vs-th>
+                      </vs-tr>
+                    </template>
+                    <template #tbody>
+                      <vs-tr :key="i" v-for="(tr, i) in tramites">
+                        <vs-td>
+                          {{ tr.id }}
+                        </vs-td>
+                        <vs-td>
+                          {{ tr.tramiteRegistrado.cliente.cedula }}
+                        </vs-td>
+                        <vs-td>
+                          {{ tr.tramiteEstado.nombre }}
+                        </vs-td>
+                        <vs-td>
+                          {{ tr.fechaRegistro }}
+                        </vs-td>
+                        <!-- <vs-td>
                             {{ tr.estado }}
                           </vs-td>
                           <vs-td>
                             {{ tr.fechaRegistro }}
                           </vs-td> -->
 
-                          <template #expand>
-                            <div class="con-content">
-                              <div>
-                                <!-- <vs-avatar>
+                        <template #expand>
+                          <div class="con-content">
+                            <div>
+                              <!-- <vs-avatar>
                                   <img
                                     :src="`/avatars/avatar-${i + 1}.png`"
                                     alt=""
                                   />
                                 </vs-avatar> -->
-                                <!-- <p>
+                              <!-- <p>
                                   {{ tr.nombreCompleto }}
                                 </p> -->
-                              </div>
-                              <div>
-                                <vs-button flat icon @click="imprimir(tr)">
-                                  Editar
-                                </vs-button>
-                              </div>
                             </div>
-                          </template>
-                        </vs-tr>
-                      </template>
-                    </vs-table>
-                  </div>
+                            <div>
+                              <vs-button flat icon @click="imprimir(tr)">
+                                Editar
+                              </vs-button>
+                            </div>
+                          </div>
+                        </template>
+                      </vs-tr>
+                    </template>
+                  </vs-table>
                 </div>
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
+        </div>
+        <div class="btn btn-info">
+          <input
+            type="button"
+            value="Volver al inicio"
+            @click="volverLogin"
+            class="btn  btn-sm login_btn"
+          />
         </div>
       </div>
-      <div><br /></div>
-      <div class="btn btn-info">
-      <input
-        type="button"
-        value="Volver al inicio"
-        @click="volverLogin"
-        class="btn float-right login_btn"
-      />
     </div>
-    </div>
-    
-    
+  </div>
+
   <!-- </div> -->
 </template>
 

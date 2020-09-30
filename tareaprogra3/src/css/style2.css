@@ -11,7 +11,7 @@ font-family: 'Numans', sans-serif;
 }
 
 .container{
-height: 110%;
+height: 100%;
 align-content: center;
 display: flex;
 align-items: center;
@@ -46,7 +46,13 @@ background-color: dodgerblue!important;;
 width: 200px;
 height: auto;
 }
-
+.btn-info{
+font-weight:bold;
+color: black;
+/* background-color: dodgerblue!important;; */
+width: 250px;
+height: auto;
+}
 .login_btn:hover{
 font-weight:bold;
 color: black;
