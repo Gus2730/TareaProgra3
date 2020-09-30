@@ -86,13 +86,13 @@
                           {{ tr.id }}
                         </vs-td>
                         <vs-td>
-                          {{ tr.tramiteRegistrado.cliente.cedula }}
+                          {{ tr.cliente.cedula }}
                         </vs-td>
                         <vs-td>
-                          {{ tr.tramiteEstado.nombre }}
+                          {{ tr.cambioEstadoActual.tramiteEstado.nombre }}
                         </vs-td>
                         <vs-td>
-                          {{ tr.fechaRegistro }}
+                          {{ tr.cambioEstadoActual.fechaRegistro }}
                         </vs-td>
                         <!-- <vs-td>
                             {{ tr.estado }}
@@ -134,7 +134,7 @@
             type="button"
             value="Volver al inicio"
             @click="volverLogin"
-            class="btn  btn-sm login_btn"
+            class="btn btn-sm login_btn"
           />
         </div>
       </div>
@@ -194,7 +194,7 @@ export default {
       var dato;
       var tokens = sessionStorage.getItem("tok");
       console.log(tokens);
-      fetch("http://localhost:8099/tramites_cambio_estado", {
+      fetch("http://localhost:8099/tramites_registrados", {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
           Accept: "application/json",
