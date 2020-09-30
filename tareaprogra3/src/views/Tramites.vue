@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="container">
+   <!-- <div> -->
+    <div class="container-sm">
       <div class="d-flex justify-content-center h-100">
         <div class="card">
           <div class="card-header">
@@ -74,7 +74,7 @@
                 </div>
               </div>
               <div class="mt-5">
-                <div class="table-responsive table-light table-bordered">
+                <div class="table-responsive-sm table-light table-bordered">
                   <div class="center">
                     <vs-table>
                       <template #thead>
@@ -136,9 +136,8 @@
           </div>
         </div>
       </div>
-    </div>
-    <div><br /></div>
-    <div class="btn btn-info">
+      <div><br /></div>
+      <div class="btn btn-info">
       <input
         type="button"
         value="Volver al inicio"
@@ -146,7 +145,10 @@
         class="btn float-right login_btn"
       />
     </div>
-  </div>
+    </div>
+    
+    
+  <!-- </div> -->
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-sm">
     <!-- <link rel="stylesheet" type="text/css" href="@./css/style1.css"> -->
     <div class="d-flex justify-content-center h-100">
       <div class="card">
