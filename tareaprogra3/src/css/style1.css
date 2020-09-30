@@ -86,6 +86,17 @@ body {
   border-radius: 30%;
 }
 @media (max-width: 575.98px) {
+  html,
+  body {
+    background-image: url("../assets/fondo.jpg");
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    height: 100%;
+    width: 100%;
+    font-family: "Numans", sans-serif;
+  }
   .form-control{
     width: 20px;
     height: 40px;
