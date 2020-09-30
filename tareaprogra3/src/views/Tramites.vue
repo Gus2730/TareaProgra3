@@ -81,7 +81,8 @@
                         <vs-tr>
                           <vs-th>Id</vs-th>
                           <vs-th>cliente</vs-th>
-                          <vs-th>Tramite Tipo</vs-th>
+                          <vs-th>Tramite estado</vs-th>
+                          <vs-th>Fecha registro</vs-th>
                         </vs-tr>
                       </template>
                       <template #tbody>
@@ -90,10 +91,13 @@
                             {{ tr.id }}
                           </vs-td>
                           <vs-td>
-                            {{ tr.cliente.cedula }}
+                            {{ tr.tramiteRegistrado.cliente.cedula }}
                           </vs-td>
                           <vs-td>
-                            {{ tr.tramiteTipo.descripcion }}
+                            {{ tr.tramiteEstado.nombre }}
+                          </vs-td>
+                          <vs-td>
+                            {{ tr.fechaRegistro}}
                           </vs-td>
                           <!-- <vs-td>
                             {{ tr.estado }}
@@ -195,7 +199,7 @@ export default {
       var dato;
       var tokens = sessionStorage.getItem("tok");
       console.log(tokens);
-      fetch("http://localhost:8099/tramites_registrados", {
+      fetch("http://localhost:8099/tramites_cambio_estado", {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
           Accept: "application/json",
