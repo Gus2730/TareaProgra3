@@ -3,10 +3,10 @@
 
 html,body{
 background-image: url("../assets/paisaje.jpg");
-background-size: cover;
+/* background-size: cover; */
 background-repeat: no-repeat;
 height: 100%;
-width:  100%;
+width: 100%;
 font-family: 'Numans', sans-serif;
 }
 
@@ -19,7 +19,7 @@ justify-content: center;
 }
 
 .card{
-height: 650px;
+height: 600px;
 margin-top: auto;
 margin-bottom: auto;
 width: 800px;
