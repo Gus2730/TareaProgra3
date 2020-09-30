@@ -3,8 +3,10 @@
 
 html,body{
 background-image: url("../assets/paisaje.jpg");
-/* background-size: cover; */
-background-repeat: no-repeat;
+background-size: cover;
+-moz-background-size: cover;
+-webkit-background-size: cover;
+-o-background-size: cover;
 height: 100%;
 width: 100%;
 font-family: 'Numans', sans-serif;
