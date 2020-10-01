@@ -216,6 +216,16 @@ export default {
         })
         .then((data) => {
           this.tramites = null;
+          var i;
+          for (i=0 ; i< data.length; i++) { 
+            console.log(data[i].cambioEstadoActual.fechaRegistro)
+             var date = new Date(data[i].cambioEstadoActual.fechaRegistro);
+             data[i].cambioEstadoActual.fechaRegistro=date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay();
+            }
+          // var date = new Date(data[i].cambioEstadoActual.fechaRegistro);
+          // data[i].cambioEstadoActual.fechaRegistro=date;
+          // console.log(date);
+          // data.cambioEstadoActual.fechaRegistro =date;
           this.tramites = data;
           dato = data;
         })
@@ -235,8 +245,8 @@ export default {
       window.location.href = "/";
     },
     imprimir(comp) {
-      var button_id = comp.nombreCompleto;
-      alert(button_id);
+      var button_id = comp;
+      alert("ID: "+button_id.id+ " cedula: "+button_id.cliente.cedula+"Estado: "+ button_id.cambioEstadoActual.tramiteEstado.nombre );
     },
   },
   created: function () {
