@@ -60,6 +60,12 @@ font-weight:bold;
 color: black;
 background-color: white;
 }
+.vs-pagination-content{ 
+  margin: 10px 0px;
+  font-weight:bold;
+  color: black;
+  font-size:6px;
+}
 @media (max-width: 575.98px) {
     html,body{
     background-image: url("../assets/paisaje.jpg");

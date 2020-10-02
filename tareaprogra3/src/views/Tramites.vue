@@ -18,7 +18,7 @@
                 v-model="filtro"
                 required
               />
-              <div class="input-group-append" >
+              <div class="input-group-append">
                 <button
                   id="busqueda"
                   class="btn btn-primary"
@@ -30,20 +30,13 @@
               </div>
               <div><br /></div>
               <div class="center con-selects">
-                <!-- <vs-select
-                    v-for="(color, i) in colors"
-                    :key="i"
-                    :state="color.color"
-                    :label="color.color"
-                    placeholder="Filtro"
-                    v-model="color.value"
-                  > -->
-                <vs-select class="item" placeholder="Filtro" v-model="value">
-                  <vs-option class="item" 
-                    label="Id Tramite" 
-                    value="id" 
-                    id="id"
-                    >
+                <vs-select
+                  class="item"
+                  placeholder="Filtro"
+                  @input="setSelected"
+                  v-model="value"
+                >
+                  <vs-option class="item" label="Id Tramite" value="id" id="id">
                     Id Tramite
                   </vs-option>
                   <vs-option
@@ -86,7 +79,10 @@
                       </vs-tr>
                     </template>
                     <template #tbody>
-                      <vs-tr :key="i" v-for="(tr, i) in tramites">
+                      <vs-tr
+                        :key="i"
+                        v-for="(tr, i) in $vs.getPage(tramites, page, max)"
+                      >
                         <vs-td>
                           {{ tr.id }}
                         </vs-td>
@@ -99,13 +95,6 @@
                         <vs-td>
                           {{ tr.cambioEstadoActual.fechaRegistro }}
                         </vs-td>
-                        <!-- <vs-td>
-                            {{ tr.estado }}
-                          </vs-td>
-                          <vs-td>
-                            {{ tr.fechaRegistro }}
-                          </vs-td> -->
-
                         <template #expand>
                           <div class="con-content">
                             <div>
@@ -127,6 +116,13 @@
                           </div>
                         </template>
                       </vs-tr>
+                    </template>
+                    <template #footer>
+                      <vs-pagination circle
+                        :color="color"
+                        v-model="page"
+                        :length="$vs.getLength(tramites, max)"
+                      />
                     </template>
                   </vs-table>
                 </div>
@@ -166,51 +162,31 @@ export default {
     return {
       titulo: "Trámites",
       tramites: [],
+      color: 'dark',
+      page: 1,
+      max: 6,
       value: "Ingrese su busqueda",
       filtro: "",
-      colors: [
-        // {
-        //   color: 'primary',
-        //   value: '1'
-        // },
-        // {
-        //   color: 'danger',
-        //   value: '1'
-        // },
-        // {
-        //   color: "success",
-        //   value: "2",
-        // },
-        // {
-        //   color: 'warn',
-        //   value: '3'
-        // },
-        // {
-        //   color: 'dark',
-        //   value: '4'
-        // }
-      ],
     };
   },
   computed: {
     ...mapState(["token"]),
   },
   methods: {
-     
     Conseguir() {
       var dato;
       var textfiltro = "";
       var tokens = sessionStorage.getItem("tok");
-      if(this.value == "id"){
-        textfiltro="/"+ this.filtro
-      }else if(this.value == "cedula"){
-        textfiltro="/cedula/"+ this.filtro
-      }else if(this.value == "id"){
-        textfiltro="/id"+ this.filtro
-      }else if(this.value == "id"){
-        textfiltro="/id"+ this.filtro
+      if (this.value == "id") {
+        textfiltro = "/" + this.filtro;
+      } else if (this.value == "cedula") {
+        textfiltro = "/cedula/" + this.filtro;
+      } else if (this.value == "id") {
+        textfiltro = "/id" + this.filtro;
+      } else if (this.value == "id") {
+        textfiltro = "/id" + this.filtro;
       }
-      fetch("http://localhost:8099/tramites_registrados"+textfiltro, {
+      fetch("http://localhost:8099/tramites_registrados" + textfiltro, {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
           Accept: "application/json",
@@ -278,31 +254,26 @@ export default {
           button_id.cambioEstadoActual.tramiteEstado.nombre
       );
     },
+    setSelected(values) {
+      if (values == "id") {
+        document.getElementById("txtbusqueda").placeholder =
+          "Ingrese el id del trámite ha buscar";
+      }
+      if (values == "estado") {
+        document.getElementById("txtbusqueda").placeholder =
+          "Ingrese true o false para buscar por estado";
+      }
+      if (values == "cedula") {
+        document.getElementById("txtbusqueda").placeholder =
+          "Ingrese la cedula del tramite ha buscar";
+      }
+      if (values == "fecha") {
+        document.getElementById("txtbusqueda").placeholder =
+          "Digite la fecha de ingreso con el siguiente formato yyyy-mm-dd";
+      }
+    },
   },
   created: function () {
-    // var casa=this.value;
-    // $(document).ready(function () {
-    //   $(document).on("click", ".item", function () {
-    //     var selected = $(this).attr("value");
-    //     console.log(selected);
-    //     if (selected== "id") {
-    //       document.getElementById("busqueda").placeholder =
-    //         "Ingrese el id del tramite ha buscar";
-    //     }
-    //     if (selected == "estado") {
-    //       document.getElementById("busqueda").placeholder =
-    //         "Ingrese el estado del tramite ha buscar";
-    //     }
-    //     if (selected== "cedula") {
-    //       document.getElementById("busqueda").placeholder =
-    //         "Ingrese la cedula del tramite ha buscar";
-    //     }
-    //     if (selected == "fecha") {
-    //       document.getElementById("busqueda").placeholder =
-    //         "Ingrese la fecha de ingreso del tramite ha buscar";
-    //     }
-    //   });
-    // });
     this.Conseguir();
   },
 };
