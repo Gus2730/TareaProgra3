@@ -21,7 +21,7 @@
               <div class="input-group-append">
                 <button
                   id="busqueda"
-                  class="btn btn-primary"
+                  class="btn-fil btn-primary"
                   type="button"
                   @click="Conseguir"
                 >

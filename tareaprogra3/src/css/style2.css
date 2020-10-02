@@ -41,6 +41,13 @@ background-color: dodgerblue;
 color: black;
 border:0 !important;
 }
+.input-group-append span {
+  height: 40;
+  width: 20px;
+  color: rgb(255, 255, 255);
+  border: 0 !important;
+  font-size:15px;
+}
 .login_btn{
 font-weight:bold;
 color: black;
@@ -51,20 +58,17 @@ height: auto;
 .btn-info{
 font-weight:bold;
 color: black;
-/* background-color: dodgerblue!important;; */
 width: 250px;
 height: auto;
+}
+.btn-fil{
+width: 52px;
+height: 40px;
 }
 .login_btn:hover{
 font-weight:bold;
 color: black;
 background-color: white;
-}
-.vs-pagination-content{ 
-  margin: 10px 0px;
-  font-weight:bold;
-  color: black;
-  font-size:6px;
 }
 @media (max-width: 575.98px) {
     html,body{
@@ -104,7 +108,7 @@ background-color: white;
         width: 20px;
         height: 40;
         /* background-color: dodgerblue; */
-        color: black;
+        color: rgb(255, 255, 255);
         border: 0 !important;
         font-size: 12px;
       }
