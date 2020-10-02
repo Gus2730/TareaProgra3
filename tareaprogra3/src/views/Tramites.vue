@@ -115,7 +115,7 @@
                             </div>
                             <div>
                               <vs-button flat icon @click="imprimir(tr)">
-                                Editar
+                                Cambiar estado
                               </vs-button>
                             </div>
                           </div>
@@ -249,7 +249,7 @@ export default {
     volverLogin() {
       window.location.href = "/";
     },
-    imprimir(comp) {
+    imprimir(dato) {
       sessionStorage.setItem('tramiteSelect', dato);
       window.location.href = "/Mantenimiento";
     },
