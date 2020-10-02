@@ -17,6 +17,72 @@
         </div>
         <div class="card-body">
           <form>
+            <div class="form-group">
+              <div class="row justify-content-md-center">
+                <div class="col-3">
+                  <td></td>
+                  <h6>ID:</h6>
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    class="d-flex form-control form-control-sm"
+                    id="ID"
+                    placeholder="ID"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <td></td>
+              <h6>.</h6>
+              <div class="row justify-content-md-center">
+                <div class="col-3">
+                  <td></td>
+                  <h5>Cedula:</h5>
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    class="d-flex form-control form-control-sm"
+                    id="ID"
+                    placeholder="ID"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <td></td>
+              <h4>.</h4>
+              <div class="row justify-content-md-center">
+                <div class="col-3">
+                  <td></td>
+                  <h6>Fecha Registro:</h6>
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    class="d-flex form-control form-control-sm"
+                    id="ID"
+                    placeholder="ID"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <td></td>
+            <h6>Estado</h6>
+            <div class="row justify-content-md-center">
+              <select class="d-flex form-control form-control-sm">
+                <option>True</option>
+                <option>False</option>
+              </select>
+            </div>
+            <!-- <b-form-input type="text" id="Id" v-model="Id"> </b-form-input>
+            <b-form-input type="text"> </b-form-input> -->
+
             <!-- <div class="input-group form-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"
