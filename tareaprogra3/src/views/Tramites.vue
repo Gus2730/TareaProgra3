@@ -256,6 +256,7 @@ export default {
           "Estado: " +
           button_id.cambioEstadoActual.tramiteEstado.nombre
       );
+      window.location.href = "/Mantenimiento";
     },
     setSelected(values) {
       if (values == "id") {

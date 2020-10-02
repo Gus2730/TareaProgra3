@@ -13,17 +13,17 @@
         </div>
         <div class="card-header">
           <td></td>
-          <h3>Mantenimiento de tramites</h3>
+          <h3>{{ titulo }}</h3>
         </div>
         <div class="card-body">
           <form>
-            <div class="form-group">
-              <div class="row justify-content-md-center">
-                <div class="col-3">
+            <div class="form-group text-white">
+              <div class="row justify-content-center">
+                <div class="col-3-left">
                   <td></td>
                   <h6>ID:</h6>
                 </div>
-                <div class="col">
+                <div class="col-3">
                   <input
                     type="text"
                     class="d-flex form-control form-control-sm"
@@ -33,31 +33,41 @@
                   />
                 </div>
               </div>
-            </div>
-            <div class="form-group">
-              <td></td>
-              <h6>.</h6>
-              <div class="row justify-content-md-center">
-                <div class="col-3">
+              <br>
+              <div class="row justify-content-left">
+                <div class="col-1-left">
                   <td></td>
-                  <h5>Cedula:</h5>
+                  <h6>Nombre Completo:</h6>
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    class="d-flex form-control form-control-sm"
+                    id="Nombre Completo"
+                    placeholder="Nombre Completo"
+                    readonly
+                  />
+                </div>
+              </div>
+              <br>
+              <div class="row justify-content-center">
+                <div class="col-1-left">
+                  <td></td>
+                  <h6>Cedula:</h6>
                 </div>
                 <div class="col">
                   <input
                     type="text"
                     class="d-flex form-control form-control-sm"
                     id="ID"
-                    placeholder="ID"
+                    placeholder="Cedula"
                     readonly
                   />
                 </div>
               </div>
-            </div>
-            <div class="form-group">
-              <td></td>
-              <h4>.</h4>
+              <br>
               <div class="row justify-content-md-center">
-                <div class="col-3">
+                <div class="col-3-left">
                   <td></td>
                   <h6>Fecha Registro:</h6>
                 </div>
@@ -65,73 +75,29 @@
                   <input
                     type="text"
                     class="d-flex form-control form-control-sm"
-                    id="ID"
-                    placeholder="ID"
+                    id="Fecha Registro"
+                    placeholder="Fecha Registro"
                     readonly
                   />
                 </div>
               </div>
-            </div>
-            <td></td>
-            <h6>Estado</h6>
-            <div class="row justify-content-md-center">
-              <select class="d-flex form-control form-control-sm">
-                <option>True</option>
-                <option>False</option>
-              </select>
-            </div>
-            <!-- <b-form-input type="text" id="Id" v-model="Id"> </b-form-input>
-            <b-form-input type="text"> </b-form-input> -->
-
-            <!-- <div class="input-group form-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"
-                  ><i class="fas fa-user"></i
-                ></span>
-              </div>
-              <input
-                type="text"
-                id="cedula"
-                v-model="cedula"
-                class="form-control"
-                placeholder="Cédula"
-                required
-              />
-              <INPUT type="hidden" id="token" name="token" value="" />
-            </div>
-            <div class="input-group form-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-key"></i></span>
-              </div>
-              <input
-                type="password"
-                id="password"
-                v-model="contra"
-                @keyup.enter="inicio"
-                class="form-control"
-                placeholder="Password"
-                required
-              />
-              <div class="input-group-append">
-                <button
-                  id="show_password"
-                  class="btn btn-primary"
-                  type="button"
-                  @click="mostrarPassword"
-                >
-                  <span class="fa fa-eye-slash icon"></span>
-                </button>
+              <br>
+              <div class="row justify-content-md-center">
+                <div class="col-3-left">
+                  <td></td>
+                  <h6>Estado:</h6>
+                </div>
+                <div class="col">
+                  <select
+                    class="d-flex form-control form-control-sm"
+                    v-model="value"
+                  >
+                    <option>True</option>
+                    <option>False</option>
+                  </select>
+                </div>
               </div>
             </div>
-            <div class="btn text-center">
-              <input
-                type="button"
-                @click="inicio"
-                value="Ingresar"
-                id="inicio"
-                class="btn float-right login_btn"
-              />
-            </div> -->
           </form>
         </div>
       </div>
@@ -139,9 +105,15 @@
   </div>
 </template>
 <script>
-require("@/css/style2.css");
+require("@/css/style3.css");
 import { mapState } from "vuex";
 export default {
+  data() {
+    return {
+      value: "",
+      titulo: "Mantenimiento",
+    };
+  },
   computed: {
     ...mapState(["token"]),
   },
