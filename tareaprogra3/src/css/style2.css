@@ -75,15 +75,12 @@ background-color: white;
   height: 20px;
 }
 .vs-pagination-content{
-  /* width: 90px; */
   height: 30px;
-  text-align: center;
   align-content: center;
 }
 .vs-pagination_button active{
-  /* width: 90px; */
   height: 30px;
-  /* text-align: center; */
+  text-align: center;
   align-content: center;
 }
 @media (max-width: 575.98px) {
@@ -157,16 +154,5 @@ background-color: white;
         color: black;
         font-size:14px;
       }
-      .vs-pagination-content{
-        /* width: 90px; */
-        height: 30px;
-        text-align: center;
-        align-content: center;
-      }
-      .vs-pagination_button active{
-        /* width: 90px; */
-        height: 30px;
-        text-align: center;
-        align-content: center;
-      }
+    
     }
