@@ -57,14 +57,16 @@
                 </button>
               </div>
             </div>
-            <div class="btn text-center">
-              <input
-                type="button"
-                @click="inicio"
-                value="Ingresar"
-                id="inicio"
-                class="btn float-right btn-sm btn-md login_btn"
-              />
+            <div class="form-group">
+              <div class="btn text-center">
+                <input
+                  type="button"
+                  @click="inicio"
+                  value="Ingresar"
+                  id="inicio"
+                  class="btn float-right btn-sm btn-md login_btn"
+                />
+              </div>
             </div>
           </form>
         </div>
@@ -82,7 +84,6 @@ export default {
       titulo1: "Inicio sesion",
       contra: "",
       cedula: "",
-
     };
   },
   methods: {
@@ -118,7 +119,7 @@ export default {
         })
         .then((data) => {
           dato = data.jwt;
-          sessionStorage.setItem('tok', dato);
+          sessionStorage.setItem("tok", dato);
           if (estado1 == true) {
             console.log("Estado: " + estado1);
             window.location.href = "/Tramites";
