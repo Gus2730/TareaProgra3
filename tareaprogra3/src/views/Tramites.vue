@@ -31,10 +31,9 @@
               <div><br /></div>
               <div class="center con-selects">
                 <vs-select
-                  class="item"
-                  placeholder="Filtro"
-                  @input="setSelected"
+                  placeholder="Success"
                   v-model="value"
+                  @input="setSelected"
                 >
                   <vs-option class="item" label="Id Tramite" value="id" id="id">
                     Id Tramite
@@ -63,6 +62,9 @@
                   >
                     Fecha de ingreso
                   </vs-option>
+                  <template #message-success>
+                    Seleccione un item a filtrar
+                  </template>
                 </vs-select>
               </div>
             </div>
@@ -118,7 +120,8 @@
                       </vs-tr>
                     </template>
                     <template #footer>
-                      <vs-pagination circle
+                      <vs-pagination
+                        circle
                         :color="color"
                         v-model="page"
                         :length="$vs.getLength(tramites, max)"
@@ -162,7 +165,7 @@ export default {
     return {
       titulo: "Trámites",
       tramites: [],
-      color: 'dark',
+      color: "dark",
       page: 1,
       max: 6,
       value: "Ingrese su busqueda",
