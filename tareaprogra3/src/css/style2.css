@@ -71,9 +71,15 @@ color: black;
 background-color: white;
 }
 .vs-button{
-  width: 52px;
+  color: white;
+  background-color: black;
+  width: 150px;
   height: 20px;
 }
+.vs-button:hover{
+  background-color:rgba(15, 14, 14, 0.904);
+}
+
 .vs-pagination-content{
   height: 30px;
   align-content: center;
@@ -83,6 +89,7 @@ background-color: white;
   text-align: center;
   align-content: center;
 }
+
 @media (max-width: 575.98px) {
     html,body{
     background-image: url("../assets/paisaje.jpg");
