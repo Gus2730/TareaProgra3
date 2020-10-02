@@ -76,7 +76,14 @@
 </template>
 <script>
 import { mapActions, mapMutations } from "vuex";
-import store from "vuex";
+require("@/css/style1.css");
+import Vue from "vue";
+import Vuesax from "vuesax";
+
+import "vuesax/dist/vuesax.css"; //Vuesax styles
+Vue.use(Vuesax, {
+  // options here
+});
 export default {
   name: "Login",
   data() {
@@ -90,6 +97,7 @@ export default {
     inicio() {
       let dato = "";
       let estado1 = false;
+      const loading = this.$vs.loading();
       fetch("http://localhost:8099/login/login", {
         method: "POST",
         body: JSON.stringify({
@@ -103,6 +111,7 @@ export default {
       })
         .then(function (response) {
           if (response.status != 200) {
+            loading.close();
             estado1 = false;
             Swal.fire({
               icon: "error",
@@ -120,13 +129,15 @@ export default {
         .then((data) => {
           dato = data.jwt;
           sessionStorage.setItem("tok", dato);
-          if (estado1 == true) {
+          if (estado1 == true) {          
             console.log("Estado: " + estado1);
-            window.location.href = "/Tramites";
+            window.location.href = "/Tramites"
+            loading.close();
           }
         })
         .catch(
-          (error) => console.error("Error:", error) //,
+          (error) => console.error("Error:", error) ,
+          loading.close(),
           // Swal.fire({
           //     icon: 'error',
           //     title: 'Oops...',
@@ -148,6 +159,5 @@ export default {
     },
   },
 };
-require("@/css/style1.css");
 </script>
 
