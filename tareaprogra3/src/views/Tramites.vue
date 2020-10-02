@@ -31,7 +31,7 @@
               <div><br /></div>
               <div class="center con-selects">
                 <vs-select
-                  placeholder="Success"
+                  placeholder="Seleccione filtro"
                   v-model="value"
                   @input="setSelected"
                 >
@@ -62,6 +62,9 @@
                   >
                     Fecha de ingreso
                   </vs-option>
+                  <vs-option class="item" label="Todos los datos" value="todos" id="todos">
+                    Todos los datos
+                     </vs-option>
                   <template #message-success>
                     Seleccione un item a filtrar
                   </template>
@@ -74,8 +77,8 @@
                   <vs-table>
                     <template #thead>
                       <vs-tr>
-                        <vs-th>Id</vs-th>
-                        <vs-th>cliente</vs-th>
+                        <vs-th>Id tramite</vs-th>
+                        <vs-th>Cedula clientte</vs-th>
                         <vs-th>Tramite estado</vs-th>
                         <vs-th>Fecha registro</vs-th>
                       </vs-tr>
@@ -184,10 +187,10 @@ export default {
         textfiltro = "/" + this.filtro;
       } else if (this.value == "cedula") {
         textfiltro = "/cedula/" + this.filtro;
-      } else if (this.value == "id") {
-        textfiltro = "/id" + this.filtro;
-      } else if (this.value == "id") {
-        textfiltro = "/id" + this.filtro;
+      }else if(this.value == "estado"){
+        textfiltro="/estado/"+ this.filtro
+      } else if (this.value == "fecha") {
+        textfiltro = "/fecha/" + this.filtro;
       }
       fetch("http://localhost:8099/tramites_registrados" + textfiltro, {
         headers: {
@@ -247,25 +250,21 @@ export default {
       window.location.href = "/";
     },
     imprimir(comp) {
-      var button_id = comp;
-      alert(
-        "ID: " +
-          button_id.id +
-          " cedula: " +
-          button_id.cliente.cedula +
-          "Estado: " +
-          button_id.cambioEstadoActual.tramiteEstado.nombre
-      );
+      sessionStorage.setItem('tramiteSelect', dato);
       window.location.href = "/Mantenimiento";
     },
     setSelected(values) {
+      this.filtro = "";
+       if (values == "todos") {
+          this.Conseguir();
+      }
       if (values == "id") {
         document.getElementById("txtbusqueda").placeholder =
           "Ingrese el id del trámite ha buscar";
       }
       if (values == "estado") {
         document.getElementById("txtbusqueda").placeholder =
-          "Ingrese true o false para buscar por estado";
+          "Ingrese finalizado, suspendido o terminado";
       }
       if (values == "cedula") {
         document.getElementById("txtbusqueda").placeholder =
