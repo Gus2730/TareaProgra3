@@ -22,7 +22,7 @@ justify-content: center;
 }
 
 .card{
-height: 600px;
+height: 650px;
 margin-top: auto;
 margin-bottom: auto;
 width: 800px;
@@ -49,20 +49,23 @@ border:0 !important;
   border: 0 !important;
   font-size:15px;
 }
-.login_btn{
+/* .login_btn{
 font-weight:bold;
 color: black;
 background-color: dodgerblue!important;;
 width: 200px;
 height: auto;
-}
-.btn-info{
+} */
+/* .btn-info{
 font-weight:bold;
 color: black;
 width: 250px;
 height: auto;
+} */
+.form-group textarea{
+    height: 70px;
 }
-.btn-fil{
+/* .btn-fil{
 width: 52px;
 height: 40px;
 }
@@ -70,7 +73,7 @@ height: 40px;
 font-weight:bold;
 color: black;
 background-color: white;
-}
+} */
 @media (max-width: 520.98px) {
     html,body{
     background-image: url("../assets/paisaje.jpg");
@@ -85,15 +88,19 @@ background-color: white;
     }
    
     .form-group h6{
-        
         color: white;
         text-align: center;
+        font-size:14px;
+    }
+    .form-group button{
+        text-align: center;
+        font-size:14px;
+    }
+    .form-group input{
+        
         font-size:12px;
     }
-    .form-group{
-        
-        font-size:8px;
-    }
+    
     .form-control{
       /* width: 100px;
       height: 30px; */
@@ -134,7 +141,7 @@ background-color: white;
         width: 20%;
         border-radius: 20%;
       }
-      .login_btn{
+      /* .login_btn{
         font-weight:bold;
         color: black;
         background-color: dodgerblue!important;;
@@ -148,7 +155,8 @@ background-color: white;
         background-color: dodgerblue !important;
         width: 60%;
         height: 8%;
-      }.item{
+      } */
+      .item{
         color: black;
         font-size:14px;
       }

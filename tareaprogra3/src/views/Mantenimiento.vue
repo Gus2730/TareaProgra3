@@ -33,7 +33,7 @@
                   />
                 </div>
               </div>
-              <br>
+              <br />
               <div class="row justify-content-left">
                 <div class="col-1-left">
                   <td></td>
@@ -49,11 +49,11 @@
                   />
                 </div>
               </div>
-              <br>
+              <br />
               <div class="row justify-content-center">
                 <div class="col-1-left">
                   <td></td>
-                  <h6>Cedula:</h6>
+                  <h6>Cédula:</h6>
                 </div>
                 <div class="col">
                   <input
@@ -65,7 +65,7 @@
                   />
                 </div>
               </div>
-              <br>
+              <br />
               <div class="row justify-content-md-center">
                 <div class="col-3-left">
                   <td></td>
@@ -81,7 +81,7 @@
                   />
                 </div>
               </div>
-              <br>
+              <br />
               <div class="row justify-content-md-center">
                 <div class="col-3-left">
                   <td></td>
@@ -95,6 +95,67 @@
                     <option>True</option>
                     <option>False</option>
                   </select>
+                </div>
+              </div>
+              <br />
+              <div class="row justify-content-md-center">
+                <div class="col-3-left">
+                  <td></td>
+                  <h6>Notas:</h6>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <textarea
+                      class="form-control"
+                      id="notas"
+                      rows="3"
+                      readonly
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row justify-content-md-center">
+                <div class="col-3-left">
+                  <td></td>
+                  <h6>Trámite Tipo:</h6>
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    class="d-flex form-control form-control-sm"
+                    id="tramite tipo"
+                    placeholder="Trámite tipo"
+                    readonly
+                  />
+                </div>
+              </div>
+              <br />
+              <div class="row justify-content-md-center">
+                <div class="col-3-left">
+                  <td></td>
+                  <h6>Descripción:</h6>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <textarea
+                      class="form-control"
+                      id="notas"
+                      rows="3"
+                      readonly
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-3-left">
+                  <button type="button" class="btn btn-outline-danger">
+                    Cancelar
+                  </button>
+                </div>
+                <div class="col-3-left">
+                  <button type="button" class="btn btn-outline-primary">
+                    Guardar
+                  </button>
                 </div>
               </div>
             </div>
@@ -111,7 +172,7 @@ export default {
   data() {
     return {
       value: "",
-      titulo: "Mantenimiento",
+      titulo: "Mantenimiento trámites",
     };
   },
   computed: {
