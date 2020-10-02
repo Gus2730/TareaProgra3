@@ -91,13 +91,19 @@ export default {
       titulo1: "Inicio sesion",
       contra: "",
       cedula: "",
+      type:'square',
+      
     };
   },
   methods: {
     inicio() {
       let dato = "";
       let estado1 = false;
-      const loading = this.$vs.loading();
+      const loading = this.$vs.loading({
+       text: 'Cargando...',
+        color: this.color,
+        type:this.type,
+      });
       fetch("http://localhost:8099/login/login", {
         method: "POST",
         body: JSON.stringify({
@@ -129,15 +135,15 @@ export default {
         .then((data) => {
           dato = data.jwt;
           sessionStorage.setItem("tok", dato);
-          if (estado1 == true) {          
+          if (estado1 == true) {
             console.log("Estado: " + estado1);
-            window.location.href = "/Tramites"
+            window.location.href = "/Tramites";
             loading.close();
           }
         })
         .catch(
-          (error) => console.error("Error:", error) ,
-          loading.close(),
+          (error) => console.error("Error:", error),
+          loading.close()
           // Swal.fire({
           //     icon: 'error',
           //     title: 'Oops...',
