@@ -15,9 +15,10 @@
                 id="txtbusqueda"
                 class="form-control"
                 placeholder="Ingrese su busqueda"
+                v-model="filtro"
                 required
               />
-              <div class="input-group-append">
+              <div class="input-group-append" >
                 <button
                   id="busqueda"
                   class="btn btn-primary"
@@ -38,7 +39,11 @@
                     v-model="color.value"
                   > -->
                 <vs-select class="item" placeholder="Filtro" v-model="value">
-                  <vs-option class="item" label="Id Tramite" value="id" id="id">
+                  <vs-option class="item" 
+                    label="Id Tramite" 
+                    value="id" 
+                    id="id"
+                    >
                     Id Tramite
                   </vs-option>
                   <vs-option
@@ -162,6 +167,7 @@ export default {
       titulo: "Trámites",
       tramites: [],
       value: "Ingrese su busqueda",
+      filtro: "",
       colors: [
         // {
         //   color: 'primary',
@@ -190,11 +196,21 @@ export default {
     ...mapState(["token"]),
   },
   methods: {
+     
     Conseguir() {
       var dato;
+      var textfiltro = "";
       var tokens = sessionStorage.getItem("tok");
-      console.log(tokens);
-      fetch("http://localhost:8099/tramites_registrados", {
+      if(this.value == "id"){
+        textfiltro="/"+ this.filtro
+      }else if(this.value == "cedula"){
+        textfiltro="/cedula/"+ this.filtro
+      }else if(this.value == "id"){
+        textfiltro="/id"+ this.filtro
+      }else if(this.value == "id"){
+        textfiltro="/id"+ this.filtro
+      }
+      fetch("http://localhost:8099/tramites_registrados"+textfiltro, {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
           Accept: "application/json",
@@ -217,11 +233,18 @@ export default {
         .then((data) => {
           this.tramites = null;
           var i;
-          for (i=0 ; i< data.length; i++) { 
-            console.log(data[i].cambioEstadoActual.fechaRegistro)
-             var date = new Date(data[i].cambioEstadoActual.fechaRegistro);
-             data[i].cambioEstadoActual.fechaRegistro=date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay();
+          for (i = 0; i < data.length; i++) {
+            if (data[i].cambioEstadoActual != null) {
+              var date = new Date(data[i].cambioEstadoActual.fechaRegistro);
+              if (data)
+                data[i].cambioEstadoActual.fechaRegistro =
+                  date.getFullYear() +
+                  "-" +
+                  date.getMonth() +
+                  "-" +
+                  date.getDay();
             }
+          }
           // var date = new Date(data[i].cambioEstadoActual.fechaRegistro);
           // data[i].cambioEstadoActual.fechaRegistro=date;
           // console.log(date);
@@ -246,7 +269,14 @@ export default {
     },
     imprimir(comp) {
       var button_id = comp;
-      alert("ID: "+button_id.id+ " cedula: "+button_id.cliente.cedula+"Estado: "+ button_id.cambioEstadoActual.tramiteEstado.nombre );
+      alert(
+        "ID: " +
+          button_id.id +
+          " cedula: " +
+          button_id.cliente.cedula +
+          "Estado: " +
+          button_id.cambioEstadoActual.tramiteEstado.nombre
+      );
     },
   },
   created: function () {
