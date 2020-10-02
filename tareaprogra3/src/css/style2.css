@@ -52,7 +52,7 @@ border:0 !important;
 font-weight:bold;
 color: black;
 background-color: dodgerblue!important;;
-width: 200px;
+width: 150px;
 height: auto;
 }
 .btn-info{
@@ -69,6 +69,22 @@ height: 40px;
 font-weight:bold;
 color: black;
 background-color: white;
+}
+.vs-button{
+  width: 52px;
+  height: 20px;
+}
+.vs-pagination-content{
+  /* width: 90px; */
+  height: 30px;
+  text-align: center;
+  align-content: center;
+}
+.vs-pagination_button active{
+  /* width: 90px; */
+  height: 30px;
+  /* text-align: center; */
+  align-content: center;
 }
 @media (max-width: 575.98px) {
     html,body{
@@ -125,8 +141,9 @@ background-color: white;
         font-weight:bold;
         color: black;
         background-color: dodgerblue!important;;
-        width: 150px;
+        width: 140px;
         height: auto;
+        font-size: 12px;
         }
       .btn-info{
         font-weight: bold;
@@ -135,8 +152,21 @@ background-color: white;
         background-color: dodgerblue !important;
         width: 60%;
         height: 8%;
-      }.item{
+      }
+      .item{
         color: black;
         font-size:14px;
+      }
+      .vs-pagination-content{
+        /* width: 90px; */
+        height: 30px;
+        text-align: center;
+        align-content: center;
+      }
+      .vs-pagination_button active{
+        /* width: 90px; */
+        height: 30px;
+        text-align: center;
+        align-content: center;
       }
     }
