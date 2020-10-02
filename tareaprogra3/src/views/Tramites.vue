@@ -166,6 +166,7 @@ export default {
   name: "Tramites",
   data() {
     return {
+      type:'square',
       titulo: "Trámites",
       tramites: [],
       color: "dark",
@@ -180,6 +181,11 @@ export default {
   },
   methods: {
     Conseguir() {
+      const loading = this.$vs.loading({
+       text: 'Cargando...',
+        color: this.color,
+        type:this.type,
+      });
       var dato;
       var textfiltro = "";
       var tokens = sessionStorage.getItem("tok");
@@ -233,6 +239,7 @@ export default {
           // data.cambioEstadoActual.fechaRegistro =date;
           this.tramites = data;
           dato = data;
+          loading.close();
         })
         .catch(
           (error) => console.error("Error:", error)
@@ -279,5 +286,6 @@ export default {
   created: function () {
     this.Conseguir();
   },
+  
 };
 </script>
