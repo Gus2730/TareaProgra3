@@ -91,8 +91,7 @@ export default {
       titulo1: "Inicio sesion",
       contra: "",
       cedula: "",
-      type:'square',
-      
+      type: "square",
     };
   },
   methods: {
@@ -100,10 +99,11 @@ export default {
       let dato = "";
       let estado1 = false;
       const loading = this.$vs.loading({
-       text: 'Cargando...',
+        text: "Cargando...",
         color: this.color,
-        type:this.type,
+        type: this.type,
       });
+      let time = 1000;
       fetch("http://localhost:8099/login/login", {
         method: "POST",
         body: JSON.stringify({
@@ -116,8 +116,7 @@ export default {
         },
       })
         .then(function (response) {
-          if (response.status != 200) {
-            loading.close();
+          if (response.status != 200) {        
             estado1 = false;
             Swal.fire({
               icon: "error",
@@ -136,14 +135,12 @@ export default {
           dato = data.jwt;
           sessionStorage.setItem("tok", dato);
           if (estado1 == true) {
-            console.log("Estado: " + estado1);
+            console.log("Estado: " + estado1);        
             window.location.href = "/Tramites";
-            loading.close();
           }
         })
         .catch(
-          (error) => console.error("Error:", error),
-          loading.close()
+          (error) => console.error("Error:", error)         
           // Swal.fire({
           //     icon: 'error',
           //     title: 'Oops...',
@@ -152,6 +149,9 @@ export default {
           //     timer: 20000})
         )
         .then((response) => console.log("Success:", response));
+      setTimeout(() => {
+        loading.close();
+      }, time);
     },
     mostrarPassword() {
       var cambio = document.getElementById("password");

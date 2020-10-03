@@ -62,9 +62,14 @@
                   >
                     Fecha de ingreso
                   </vs-option>
-                  <vs-option class="item" label="Todos los datos" value="todos" id="todos">
+                  <vs-option
+                    class="item"
+                    label="Todos los datos"
+                    value="todos"
+                    id="todos"
+                  >
                     Todos los datos
-                     </vs-option>
+                  </vs-option>
                   <template #message-success>
                     Seleccione un item a filtrar
                   </template>
@@ -123,12 +128,14 @@
                       </vs-tr>
                     </template>
                     <template #footer>
-                      <vs-pagination
-                        circle
-                        :color="color"
-                        v-model="page"
-                        :length="$vs.getLength(tramites, max)"
-                      />
+                      <div class="center con-pagination">
+                        <vs-pagination
+                          circle
+                          :color="color"
+                          v-model="page"
+                          :length="$vs.getLength(tramites, max)"
+                        />
+                      </div>
                     </template>
                   </vs-table>
                 </div>
@@ -136,14 +143,12 @@
             </div>
           </form>
         </div>
-        <div class="btn btn-info">
-          <input
-            type="button"
-            value="Volver al inicio"
-            @click="volverLogin"
-            class="btn btn-sm login_btn"
-          />
-        </div>
+        <input
+          type="button"
+          value="Volver al inicio"
+          @click="volverLogin"
+          class="btn btn-sm login_btn"
+        />
       </div>
     </div>
   </div>
@@ -166,7 +171,7 @@ export default {
   name: "Tramites",
   data() {
     return {
-      type:'square',
+      type: "square",
       titulo: "Trámites",
       tramites: [],
       color: "dark",
@@ -182,9 +187,9 @@ export default {
   methods: {
     Conseguir() {
       const loading = this.$vs.loading({
-       text: 'Cargando...',
+        text: "Cargando...",
         color: this.color,
-        type:this.type,
+        type: this.type,
       });
       var dato;
       var textfiltro = "";
@@ -193,8 +198,8 @@ export default {
         textfiltro = "/" + this.filtro;
       } else if (this.value == "cedula") {
         textfiltro = "/cedula/" + this.filtro;
-      }else if(this.value == "estado"){
-        textfiltro="/estado/"+ this.filtro
+      } else if (this.value == "estado") {
+        textfiltro = "/estado/" + this.filtro;
       } else if (this.value == "fecha") {
         textfiltro = "/fecha/" + this.filtro;
       }
@@ -257,13 +262,13 @@ export default {
       window.location.href = "/";
     },
     imprimir(dato) {
-      sessionStorage.setItem('tramiteSelect', dato);
+      sessionStorage.setItem("tramiteSelect", dato);
       window.location.href = "/Mantenimiento";
     },
     setSelected(values) {
       this.filtro = "";
-       if (values == "todos") {
-          this.Conseguir();
+      if (values == "todos") {
+        this.Conseguir();
       }
       if (values == "id") {
         document.getElementById("txtbusqueda").placeholder =
@@ -286,6 +291,5 @@ export default {
   created: function () {
     this.Conseguir();
   },
-  
 };
 </script>
