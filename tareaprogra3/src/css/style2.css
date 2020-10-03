@@ -84,11 +84,7 @@ background-color: white;
   height: 30px;
   align-content: center;
 }
-.vs-pagination_button active{
-  height: 30px;
-  text-align: center;
-  align-content: center;
-}
+
 
 @media (max-width: 575.98px) {
     html,body{

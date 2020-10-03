@@ -128,13 +128,21 @@
                       </vs-tr>
                     </template>
                     <template #footer>
-                      <div class="center con-pagination">
-                        <vs-pagination
-                          circle
-                          :color="color"
-                          v-model="page"
-                          :length="$vs.getLength(tramites, max)"
-                        />
+                      <div class="overflow-auto">
+                        <div class="text-center">
+                          <b-pagination
+                            v-model="page"
+                            pills
+                            first-text="⏮"
+                            prev-text="⏪"
+                            next-text="⏩"
+                            last-text="⏭"
+                            :total-rows="rows"
+                            :per-page="max"
+                            :color="color"
+                            align="center"
+                          ></b-pagination>
+                        </div>
                       </div>
                     </template>
                   </vs-table>
@@ -179,10 +187,14 @@ export default {
       max: 6,
       value: "Ingrese su busqueda",
       filtro: "",
+      currentPage: 1,
     };
   },
   computed: {
     ...mapState(["token"]),
+    rows() {
+      return this.tramites.length;
+    },
   },
   methods: {
     Conseguir() {
