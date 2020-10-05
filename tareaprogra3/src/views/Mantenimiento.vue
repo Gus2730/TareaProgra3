@@ -89,11 +89,11 @@
                 </div>
                 <div class="col">
                   <select
+                    name="myselect"
                     class="d-flex form-control form-control-sm"
                     v-model="value"
                   >
-                    <option>True</option>
-                    <option>False</option>
+                    <option :key="index" v-for="(item, index) in estados">{{item.nombre}}</option>
                   </select>
                 </div>
               </div>
@@ -173,10 +173,42 @@ export default {
     return {
       value: "",
       titulo: "Mantenimiento trámites",
+      estados: [],
     };
   },
   computed: {
     ...mapState(["token"]),
+  },
+  methods: {
+   
+  },
+  created: function () {
+    var tokens = sessionStorage.getItem("tok");
+    fetch("http://localhost:8099/tramites_estados", {
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Accept: "application/json",
+        Authorization: "bearer " + tokens,
+      },
+    })
+      .then(function (response) {
+        // if (response.status != 200) {
+        //   Swal.fire({
+        //     icon: "error",
+        //     title: "Oops...",
+        //     text:
+        //       "Ocurrió un error al ingresar, por favor verifique los datos ingresados o su conexíon a internet!",
+        //     confirmButtonText: `OK`,
+        //     timer: 10000,
+        //   });
+        // }
+        return response.json();
+      })
+      .then((datos) => {
+        (this.estados = datos);
+      })
+      .catch((error) => console.error("Error:", error))
+      .then((response) => console.log("Success:", response));
   },
 };
 </script>
