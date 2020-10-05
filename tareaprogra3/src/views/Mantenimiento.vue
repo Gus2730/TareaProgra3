@@ -173,10 +173,39 @@ export default {
     return {
       value: "",
       titulo: "Mantenimiento trámites",
+      estados: [],
     };
   },
   computed: {
     ...mapState(["token"]),
+  },
+  created: function () {
+    var tokens = sessionStorage.getItem("tok");
+    fetch("http://localhost:8099/tramites_estados", {
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Accept: "application/json",
+        Authorization: "bearer " + tokens,
+      },
+    })
+      .then(function (response) {
+        // if (response.status != 200) {
+        //   Swal.fire({
+        //     icon: "error",
+        //     title: "Oops...",
+        //     text:
+        //       "Ocurrió un error al ingresar, por favor verifique los datos ingresados o su conexíon a internet!",
+        //     confirmButtonText: `OK`,
+        //     timer: 10000,
+        //   });
+        // }
+        return response.json();
+      })
+      .then((datos) => {
+        (this.estados = datos), console.log(this.estados);
+      })
+      .catch((error) => console.error("Error:", error))
+      .then((response) => console.log("Success:", response));
   },
 };
 </script>
