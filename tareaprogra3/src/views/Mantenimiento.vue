@@ -189,10 +189,10 @@ export default {
   },
   methods: {
     seleccionar() {
-      var obj = sessionStorage.getItem("tramiteSelect");
-      console.log(obj);
-      $(document).ready(function () {
-        // $("#myselect").val(this.cambioEstadoActual.tramiteEstado.nombre);
+      var obj = JSON.parse(sessionStorage.getItem("user"));
+      console.log("Objeto: ",obj);  
+       $(document).ready(function () {
+        $("#myselect").val(obj.cambioEstadoActual.tramiteEstado.nombre);
       });
     },
   },
