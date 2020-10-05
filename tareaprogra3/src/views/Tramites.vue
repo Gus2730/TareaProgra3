@@ -226,15 +226,30 @@ export default {
         },
       })
         .then(function (response) {
-          if (response.status != 200) {
+          if (response.status == 401) {
+            loading.close();
             Swal.fire({
               icon: "error",
-              title: "Oops...",
+              title: "ERROR",
+              text:
+                "Ocurrió un error el token es incorrecto o ha expirado, por favor vuelva a identificarse!",
+              confirmButtonText: `OK`
+            })
+            .then(() => {
+                  window.location.href = "/";
+            });
+           
+          }else if (response.status != 200) {
+            loading.close();
+            Swal.fire({
+              icon: "error",
+              title: "ERROR",
               text:
                 "Ocurrió un error al ingresar, por favor verifique los datos ingresados o su conexíon a internet!",
               confirmButtonText: `OK`,
               timer: 10000,
             });
+            
           }
           return response.json();
         })
@@ -273,7 +288,7 @@ export default {
       window.location.href = "/";
     },
     imprimir(dato) {
-      sessionStorage.setItem("tramiteSelect", dato);
+      sessionStorage.setItem("user", JSON.stringify(dato));
       window.location.href = "/Mantenimiento";
     },
     setSelected(values) {
