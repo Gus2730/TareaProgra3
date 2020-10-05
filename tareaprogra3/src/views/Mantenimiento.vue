@@ -90,10 +90,17 @@
                 <div class="col">
                   <select
                     name="myselect"
+                    id="myselect"
                     class="d-flex form-control form-control-sm"
                     v-model="value"
                   >
-                    <option :key="index" v-for="(item, index) in estados">{{item.nombre}}</option>
+                    <option
+                      :key="index"
+                      v-for="(item, index) in estados"
+                      :value="item.nombre"
+                    >
+                      {{ item.nombre }}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -153,6 +160,10 @@
                   </button>
                 </div>
                 <div class="col-3-left">
+                  <div class="col-6">
+                    <h2>Docente seleccionado:</h2>
+                    {{ value }}
+                  </div>
                   <button type="button" class="btn btn-outline-primary">
                     Guardar
                   </button>
@@ -174,13 +185,20 @@ export default {
       value: "",
       titulo: "Mantenimiento trámites",
       estados: [],
+      // tramite:[]
     };
   },
   computed: {
     ...mapState(["token"]),
   },
   methods: {
-   
+    seleccionar() {
+      var obj = sessionStorage.getItem('tramiteSelect');   
+      console.log(obj);
+      $(document).ready(function () {
+        // $("#myselect").val(this.cambioEstadoActual.tramiteEstado.nombre);
+      });
+    },
   },
   created: function () {
     var tokens = sessionStorage.getItem("tok");
@@ -205,7 +223,8 @@ export default {
         return response.json();
       })
       .then((datos) => {
-        (this.estados = datos);
+        this.estados = datos;
+        this.seleccionar();
       })
       .catch((error) => console.error("Error:", error))
       .then((response) => console.log("Success:", response));
