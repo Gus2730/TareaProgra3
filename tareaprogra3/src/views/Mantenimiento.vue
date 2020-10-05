@@ -29,6 +29,7 @@
                     class="d-flex form-control form-control-sm"
                     id="ID"
                     placeholder="ID"
+                    v-model="id"
                     readonly
                   />
                 </div>
@@ -45,6 +46,7 @@
                     class="d-flex form-control form-control-sm"
                     id="Nombre Completo"
                     placeholder="Nombre Completo"
+                    v-model="nombre"
                     readonly
                   />
                 </div>
@@ -59,8 +61,9 @@
                   <input
                     type="text"
                     class="d-flex form-control form-control-sm"
-                    id="ID"
+                    id="cedula"
                     placeholder="Cedula"
+                    v-model="cedula"
                     readonly
                   />
                 </div>
@@ -76,7 +79,8 @@
                     type="text"
                     class="d-flex form-control form-control-sm"
                     id="Fecha Registro"
-                    placeholder="Fecha Registro"
+                    placeholder="Fecha registro"
+                    v-model="fecha"
                     readonly
                   />
                 </div>
@@ -127,17 +131,19 @@
                   <h6>Trámite Tipo:</h6>
                 </div>
                 <div class="col">
-                  <input
-                    type="text"
-                    class="d-flex form-control form-control-sm"
-                    id="tramite tipo"
-                    placeholder="Trámite tipo"
-                    readonly
-                  />
+                  <div class="form-group">
+                    <textarea
+                      class="form-control"
+                      id="notas"
+                      rows="3"
+                      v-model="tramitetipo"
+                      readonly
+                    ></textarea>
+                  </div>
                 </div>
               </div>
               <br />
-              <div class="row justify-content-md-center">
+              <!-- <div class="row justify-content-md-center">
                 <div class="col-3-left">
                   <td></td>
                   <h6>Descripción:</h6>
@@ -148,11 +154,12 @@
                       class="form-control"
                       id="notas"
                       rows="3"
+                      v-model="tramitetipo"
                       readonly
                     ></textarea>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <div class="row justify-content-center">
                 <div class="col-3-left">
                   <button type="button" class="btn btn-outline-danger">
@@ -181,6 +188,12 @@ export default {
       value: "",
       titulo: "Mantenimiento trámites",
       estados: [],
+      dato:[],
+      cedula: "",
+      id:"",
+      nombre:"",
+      fecha:"",
+      tramitetipo:"",
       // tramite:[]
     };
   },
@@ -191,6 +204,12 @@ export default {
     seleccionar() {
       var obj = JSON.parse(sessionStorage.getItem("user"));
       console.log("Objeto: ",obj);  
+      this.cedula=obj.cliente.cedula;
+      this.id=obj.cliente.id;
+      this.nombre=obj.cliente.nombreCompleto;
+      this.fecha=obj.cambioEstadoActual.fechaRegistro;
+      this.tramitetipo=obj.tramiteTipo.descripcion;
+      //console.log(obj.cliente.cedula);
        $(document).ready(function () {
         $("#myselect").val(obj.cambioEstadoActual.tramiteEstado.nombre);
       });
