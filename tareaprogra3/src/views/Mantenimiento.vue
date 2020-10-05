@@ -160,10 +160,6 @@
                   </button>
                 </div>
                 <div class="col-3-left">
-                  <div class="col-6">
-                    <h2>Docente seleccionado:</h2>
-                    {{ value }}
-                  </div>
                   <button type="button" class="btn btn-outline-primary">
                     Guardar
                   </button>
@@ -193,7 +189,7 @@ export default {
   },
   methods: {
     seleccionar() {
-      var obj = sessionStorage.getItem('tramiteSelect');   
+      var obj = sessionStorage.getItem("tramiteSelect");
       console.log(obj);
       $(document).ready(function () {
         // $("#myselect").val(this.cambioEstadoActual.tramiteEstado.nombre);
