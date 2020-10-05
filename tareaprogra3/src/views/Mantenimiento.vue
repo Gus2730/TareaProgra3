@@ -89,11 +89,11 @@
                 </div>
                 <div class="col">
                   <select
+                    name="myselect"
                     class="d-flex form-control form-control-sm"
                     v-model="value"
                   >
-                    <option>True</option>
-                    <option>False</option>
+                    <option :key="index" v-for="(item, index) in estados">{{item.nombre}}</option>
                   </select>
                 </div>
               </div>
@@ -179,6 +179,9 @@ export default {
   computed: {
     ...mapState(["token"]),
   },
+  methods: {
+   
+  },
   created: function () {
     var tokens = sessionStorage.getItem("tok");
     fetch("http://localhost:8099/tramites_estados", {
@@ -202,7 +205,7 @@ export default {
         return response.json();
       })
       .then((datos) => {
-        (this.estados = datos), console.log(this.estados);
+        (this.estados = datos);
       })
       .catch((error) => console.error("Error:", error))
       .then((response) => console.log("Success:", response));
