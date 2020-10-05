@@ -103,7 +103,7 @@
                           {{ tr.cambioEstadoActual.tramiteEstado.nombre }}
                         </vs-td>
                         <vs-td>
-                          {{ tr.cambioEstadoActual.fechaRegistro }}
+                          {{ getHumanDate(tr.cambioEstadoActual.fechaRegistro) }}
                         </vs-td>
                         <template #expand>
                           <div class="con-content">
@@ -168,11 +168,12 @@
 require("@/css/style2.css");
 import Vue from "vue";
 import Vuesax from "vuesax";
-
+import moment from 'moment';
 import "vuesax/dist/vuesax.css"; //Vuesax styles
 Vue.use(Vuesax, {
   // options here
 });
+Vue.use(require('vue-moment'));
 import store from "vuex";
 import { mapState } from "vuex";
 export default {
@@ -197,10 +198,12 @@ export default {
     },
   },
   methods: {
+    getHumanDate : function (date) {
+                   return moment(date, 'YYYY-MM-DD').format('YYYY-MM-DD');
+               },
     Conseguir() {
       const loading = this.$vs.loading({
         text: "Cargando...",
-        color: this.color,
         type: this.type,
       });
       var dato;
@@ -237,23 +240,18 @@ export default {
         })
         .then((data) => {
           this.tramites = null;
-          // var i;
-          // for (i = 0; i < data.length; i++) {
-          //   if (data[i].cambioEstadoActual != null) {
-          //     var date = new Date(data[i].cambioEstadoActual.fechaRegistro);
-          //     if (data)
-          //       data[i].cambioEstadoActual.fechaRegistro =
-          //         date.getFullYear() +
-          //         "-" +
-          //         date.getMonth() +
-          //         "-" +
-          //         date.getDay();
-          //   }
-          // }
-          // var date = new Date(data[i].cambioEstadoActual.fechaRegistro);
-          // data[i].cambioEstadoActual.fechaRegistro=date;
-          // console.log(date);
-          // data.cambioEstadoActual.fechaRegistro =date;
+          var i;
+          for (i = 0; i < data.length; i++) {
+            if (data[i].cambioEstadoActual != null) {
+              var date = new Date(data[i].cambioEstadoActual.fechaRegistro);
+              var Horas = 1000 * 60 * 60 * 1;
+              console.log(date.getTime() - Horas);
+              var horaZona = new Date(date.getTime() - Horas);
+              console.log(horaZona);
+              data[i].cambioEstadoActual.fechaRegistro = horaZona;
+            }
+          }
+          
           this.tramites = data;
           console.log(data);
           dato = data;
