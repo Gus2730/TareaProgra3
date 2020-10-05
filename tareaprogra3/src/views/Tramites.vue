@@ -237,24 +237,25 @@ export default {
         })
         .then((data) => {
           this.tramites = null;
-          var i;
-          for (i = 0; i < data.length; i++) {
-            if (data[i].cambioEstadoActual != null) {
-              var date = new Date(data[i].cambioEstadoActual.fechaRegistro);
-              if (data)
-                data[i].cambioEstadoActual.fechaRegistro =
-                  date.getFullYear() +
-                  "-" +
-                  date.getMonth() +
-                  "-" +
-                  date.getDay();
-            }
-          }
+          // var i;
+          // for (i = 0; i < data.length; i++) {
+          //   if (data[i].cambioEstadoActual != null) {
+          //     var date = new Date(data[i].cambioEstadoActual.fechaRegistro);
+          //     if (data)
+          //       data[i].cambioEstadoActual.fechaRegistro =
+          //         date.getFullYear() +
+          //         "-" +
+          //         date.getMonth() +
+          //         "-" +
+          //         date.getDay();
+          //   }
+          // }
           // var date = new Date(data[i].cambioEstadoActual.fechaRegistro);
           // data[i].cambioEstadoActual.fechaRegistro=date;
           // console.log(date);
           // data.cambioEstadoActual.fechaRegistro =date;
           this.tramites = data;
+          console.log(data);
           dato = data;
           loading.close();
         })
