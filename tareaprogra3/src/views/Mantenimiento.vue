@@ -182,6 +182,7 @@
 <script>
 require("@/css/style3.css");
 import { mapState } from "vuex";
+import moment from 'moment';
 export default {
   data() {
     return {
@@ -201,13 +202,14 @@ export default {
     ...mapState(["token"]),
   },
   methods: {
+    
     seleccionar() {
       var obj = JSON.parse(sessionStorage.getItem("user"));
       console.log("Objeto: ",obj);  
       this.cedula=obj.cliente.cedula;
       this.id=obj.cliente.id;
       this.nombre=obj.cliente.nombreCompleto;
-      this.fecha=obj.cambioEstadoActual.fechaRegistro;
+      this.fecha= moment(obj.cambioEstadoActual.fechaRegistro, 'YYYY-MM-DD').format('YYYY-MM-DD');
       this.tramitetipo=obj.tramiteTipo.descripcion;
       //console.log(obj.cliente.cedula);
        $(document).ready(function () {
