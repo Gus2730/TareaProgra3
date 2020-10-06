@@ -121,7 +121,9 @@
                       id="notas"
                       rows="3"
                       readonly
-                    ></textarea>
+                      v-model="resulNota"
+                    >
+                    </textarea>
                   </div>
                 </div>
               </div>
@@ -143,23 +145,6 @@
                 </div>
               </div>
               <br />
-              <!-- <div class="row justify-content-md-center">
-                <div class="col-3-left">
-                  <td></td>
-                  <h6>Descripción:</h6>
-                </div>
-                <div class="col">
-                  <div class="form-group">
-                    <textarea
-                      class="form-control"
-                      id="notas"
-                      rows="3"
-                      v-model="tramitetipo"
-                      readonly
-                    ></textarea>
-                  </div>
-                </div>
-              </div> -->
               <div class="row justify-content-center">
                 <div class="col-3-left">
                   <button type="button" class="btn btn-outline-danger">
@@ -195,6 +180,8 @@ export default {
       nombre:"",
       fecha:"",
       tramitetipo:"",
+      nota:[],
+      resulNota:""
       // tramite:[]
     };
   },
@@ -211,6 +198,20 @@ export default {
       this.nombre=obj.cliente.nombreCompleto;
       this.fecha= moment(obj.cambioEstadoActual.fechaRegistro, 'YYYY-MM-DD').format('YYYY-MM-DD');
       this.tramitetipo=obj.tramiteTipo.descripcion;
+      this.nota=obj.notas;
+      var idex;
+      for(idex=0;idex<this.nota.length;idex++)
+      {
+        if(idex>0)
+        {
+          this.resulNota= this.resulNota+"\n"+this.nota[idex].contenido;
+        }
+        else{
+           this.resulNota= this.resulNota+this.nota[idex].contenido;
+        }
+        
+        
+      }
       //console.log(obj.cliente.cedula);
        $(document).ready(function () {
         $("#myselect").val(obj.cambioEstadoActual.tramiteEstado.nombre);
