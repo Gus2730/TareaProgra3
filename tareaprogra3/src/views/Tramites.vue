@@ -7,11 +7,32 @@
           <button
             type="button"
             class="btn btn-outline-danger"
-            @click="volverLogin"
+            @click="showModal"
           >
             <b-icon icon="box-arrow-left" aria-hidden="true"> </b-icon>
             SALIR
           </button>
+          <div>
+            <b-modal ref="my-modal" hide-footer title="Alerta">
+              <div class="d-block text-center">
+                <h3>¿Seguro que quieres salir?</h3>
+              </div>
+              <b-button
+                class="mt-3"
+                variant="outline-warning"
+                block
+                @click="hideModal"
+                >Cancelar</b-button
+              >
+              <b-button
+                class="mt-2"
+                variant="outline-danger"
+                block
+                @click="volverLogin"
+                >Aceptar</b-button
+              >
+            </b-modal>
+          </div>
         </div>
         <div class="card-header">
           <td />
@@ -329,6 +350,12 @@ export default {
           "Digite la fecha con el formato yyyy-mm-dd";
       }
     },
+    showModal() {
+      this.$refs["my-modal"].show();
+    },
+    hideModal() {
+      this.$refs["my-modal"].hide();
+    }
   },
   created: function () {
     this.Conseguir();
