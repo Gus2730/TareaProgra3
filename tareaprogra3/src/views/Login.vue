@@ -134,10 +134,12 @@ export default {
         .then((data) => {
           dato = data.jwt;
           sessionStorage.setItem("tok", dato);
-          if (estado1 == true) {
-            console.log("Estado: " + estado1);        
-            window.location.href = "/Tramites";
-          }
+          sessionStorage.setItem("user1", JSON.stringify(data.usuario));
+          console.log("Usuario: " ,sessionStorage.getItem("user1"));
+          // if (estado1 == true) {
+          //   console.log("Estado: " + estado1);        
+          //   window.location.href = "/Tramites";
+          // }
         })
         .catch(
           (error) => console.error("Error:", error)         
