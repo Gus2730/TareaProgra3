@@ -101,7 +101,7 @@
                     <option
                       :key="index"
                       v-for="(item, index) in estados"
-                      :value="item.nombre"
+                      :value="item"
                     >
                       {{ item.nombre }}
                     </option>
@@ -175,7 +175,7 @@ import moment from "moment";
 export default {
   data() {
     return {
-      value: "",
+      value: null,
       titulo: "Mantenimiento trámites",
       estados: [],
       dato: [],
@@ -195,18 +195,21 @@ export default {
   },
   methods: {
     clickGuarda: function () {
-      fetch('https://jsonplaceholder.typicode.com/todos', {
+      console.log(this.value.id);
+      var usu = JSON.parse(sessionStorage.getItem("user1"));
+      var tra = JSON.parse(sessionStorage.getItem("user"));
+      fetch('http://localhost:8099/tramites_cambio_estado/', {
             method: 'POST',
             body: JSON.stringify({
                 "tramiteEstado": {
-                    "id":1
+                    "id": this.value.id
                        },
 
              "usuario":{
-                 "id":9
+                 "id": usu.id
                    },
                "tramiteRegistrado":{
-                  "id":1
+                  "id": tra.id
                  }
             }),
         headers: {
