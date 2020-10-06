@@ -3,12 +3,25 @@
   <div class="container-sm">
     <div class="d-flex justify-content-center h-100">
       <div class="card">
+        <div class="input-group-append">
+          <button
+            type="button"
+            class="btn btn-outline-danger"
+            @click="volverLogin"
+          >
+            <b-icon icon="box-arrow-left" aria-hidden="true"> </b-icon>
+            SALIR
+          </button>
+        </div>
         <div class="card-header">
-          <td></td>
+          <td/>
           <h3>{{ titulo }}</h3>
         </div>
+
         <div class="card-body">
+          
           <form>
+            <div class="row justify-content-md-center">
             <div class="input-group form-group">
               <input
                 type="text"
@@ -18,10 +31,11 @@
                 v-model="filtro"
                 required
               />
+              <td></td>
               <div class="input-group-append">
                 <button
                   id="busqueda"
-                  class="btn-fil btn-primary"
+                  class="btn-fil btn-outline-primary"
                   type="button"
                   @click="Conseguir"
                 >
@@ -76,6 +90,7 @@
                 </vs-select>
               </div>
             </div>
+            </div>
             <div class="mt-5">
               <div class="table-responsive-sm table-light table-bordered">
                 <div class="center">
@@ -103,7 +118,9 @@
                           {{ tr.cambioEstadoActual.tramiteEstado.nombre }}
                         </vs-td>
                         <vs-td>
-                          {{ getHumanDate(tr.cambioEstadoActual.fechaRegistro) }}
+                          {{
+                            getHumanDate(tr.cambioEstadoActual.fechaRegistro)
+                          }}
                         </vs-td>
                         <template #expand>
                           <div class="con-content">
@@ -151,12 +168,6 @@
             </div>
           </form>
         </div>
-        <input
-          type="button"
-          value="Volver al inicio"
-          @click="volverLogin"
-          class="btn btn-sm login_btn"
-        />
       </div>
     </div>
   </div>
@@ -168,12 +179,12 @@
 require("@/css/style2.css");
 import Vue from "vue";
 import Vuesax from "vuesax";
-import moment from 'moment';
+import moment from "moment";
 import "vuesax/dist/vuesax.css"; //Vuesax styles
 Vue.use(Vuesax, {
   // options here
 });
-Vue.use(require('vue-moment'));
+Vue.use(require("vue-moment"));
 import store from "vuex";
 import { mapState } from "vuex";
 export default {
@@ -198,9 +209,9 @@ export default {
     },
   },
   methods: {
-    getHumanDate : function (date) {
-                   return moment(date, 'YYYY-MM-DD').format('YYYY-MM-DD');
-               },
+    getHumanDate: function (date) {
+      return moment(date, "YYYY-MM-DD").format("YYYY-MM-DD");
+    },
     Conseguir() {
       const loading = this.$vs.loading({
         text: "Cargando...",
@@ -233,13 +244,11 @@ export default {
               title: "ERROR",
               text:
                 "Ocurrió un error el token es incorrecto o ha expirado, por favor vuelva a identificarse!",
-              confirmButtonText: `OK`
-            })
-            .then(() => {
-                  window.location.href = "/";
+              confirmButtonText: `OK`,
+            }).then(() => {
+              window.location.href = "/";
             });
-           
-          }else if (response.status != 200) {
+          } else if (response.status != 200) {
             loading.close();
             Swal.fire({
               icon: "error",
@@ -249,7 +258,6 @@ export default {
               confirmButtonText: `OK`,
               timer: 10000,
             });
-            
           }
           return response.json();
         })
@@ -266,7 +274,7 @@ export default {
               data[i].cambioEstadoActual.fechaRegistro = horaZona;
             }
           }
-          
+
           this.tramites = data;
           console.log(data);
           dato = data;

@@ -64,7 +64,7 @@
                   @click="inicio"
                   value="Ingresar"
                   id="inicio"
-                  class="btn float-right btn-sm btn-md login_btn"
+                  class="btn btn-outline-primary"
                 />
               </div>
             </div>
