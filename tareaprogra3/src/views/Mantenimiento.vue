@@ -152,7 +152,11 @@
                   </button>
                 </div>
                 <div class="col-3-left">
-                  <button type="button" class="btn btn-outline-primary">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary"
+                    @click="clickGuarda"
+                  >
                     Guardar
                   </button>
                 </div>
@@ -167,21 +171,22 @@
 <script>
 require("@/css/style3.css");
 import { mapState } from "vuex";
-import moment from 'moment';
+import moment from "moment";
 export default {
   data() {
     return {
       value: "",
       titulo: "Mantenimiento trámites",
       estados: [],
-      dato:[],
+      dato: [],
       cedula: "",
-      id:"",
-      nombre:"",
-      fecha:"",
-      tramitetipo:"",
-      nota:[],
-      resulNota:""
+      id: "",
+      nombre: "",
+      fecha: "",
+      tramitetipo: "",
+      nota: [],
+      resulNota: "",
+      tokens:""
       // tramite:[]
     };
   },
@@ -189,40 +194,63 @@ export default {
     ...mapState(["token"]),
   },
   methods: {
-    
+    clickGuarda: function () {
+      fetch('https://jsonplaceholder.typicode.com/todos', {
+            method: 'POST',
+            body: JSON.stringify({
+                "tramiteEstado": {
+                    "id":1
+                       },
+
+             "usuario":{
+                 "id":9
+                   },
+               "tramiteRegistrado":{
+                  "id":1
+                 }
+            }),
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: "bearer " + this.tokens,
+        },
+      });
+    },
     seleccionar() {
       var obj = JSON.parse(sessionStorage.getItem("user"));
-      console.log("Objeto: ",obj);  
-      this.cedula=obj.cliente.cedula;
-      this.id=obj.cliente.id;
-      this.nombre=obj.cliente.nombreCompleto;
-      this.fecha= moment(obj.cambioEstadoActual.fechaRegistro, 'YYYY-MM-DD').format('YYYY-MM-DD');
-      this.tramitetipo=obj.tramiteTipo.descripcion;
-      this.nota=obj.notas;
+      console.log("Objeto: ", obj);
+      this.cedula = obj.cliente.cedula;
+      this.id = obj.cliente.id;
+      obj.cliente.nombreCompleto;
+      this.nombre = obj.cliente.nombreCompleto;
+      this.fecha = moment(
+        obj.cambioEstadoActual.fechaRegistro,
+        "YYYY-MM-DD"
+      ).format("YYYY-MM-DD");
+      this.tramitetipo = obj.tramiteTipo.descripcion;
+      this.nota = obj.notas;
       var idex;
-      for(idex=0;idex<this.nota.length;idex++)
-      {
-        if(idex>0)
-        {
-          this.resulNota= this.resulNota+"\n"+this.nota[idex].contenido+".";
-        }
-        else{
-           this.resulNota= this.resulNota+this.nota[idex].contenido+".";
+      for (idex = 0; idex < this.nota.length; idex++) {
+        if (idex > 0) {
+          this.resulNota =
+            this.resulNota + "\n" + this.nota[idex].contenido + ".";
+        } else {
+          this.resulNota = this.resulNota + this.nota[idex].contenido + ".";
         }
       }
       //console.log(obj.cliente.cedula);
-       $(document).ready(function () {
+      $(document).ready(function () {
         $("#myselect").val(obj.cambioEstadoActual.tramiteEstado.nombre);
       });
     },
   },
   created: function () {
-    var tokens = sessionStorage.getItem("tok");
+    this.tokens = sessionStorage.getItem("tok");
     fetch("http://localhost:8099/tramites_estados", {
       headers: {
         "Content-type": "application/json; charset=UTF-8",
         Accept: "application/json",
-        Authorization: "bearer " + tokens,
+        Authorization: "bearer " + this.tokens,
       },
     })
       .then(function (response) {
@@ -247,3 +275,6 @@ export default {
   },
 };
 </script>
+
+
+
