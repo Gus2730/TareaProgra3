@@ -14,82 +14,90 @@
           </button>
         </div>
         <div class="card-header">
-          <td/>
+          <td />
           <h3>{{ titulo }}</h3>
         </div>
 
         <div class="card-body">
-          
           <form>
             <div class="row justify-content-md-center">
-            <div class="input-group form-group">
-              <input
-                type="text"
-                id="txtbusqueda"
-                class="form-control"
-                placeholder="Ingrese su busqueda"
-                v-model="filtro"
-                required
-              />
-              <td></td>
-              <div class="input-group-append">
-                <button
-                  id="busqueda"
-                  class="btn-fil btn-outline-primary"
-                  type="button"
-                  @click="Conseguir"
-                >
-                  <span class="fa fa-search"></span>
-                </button>
+              <div class="input-group form-group">
+                <div class="col-8">
+                  <input
+                    type="text"
+                    id="txtbusqueda"
+                    class="form-control"
+                    placeholder="Ingrese su busqueda"
+                    v-model="filtro"
+                    required
+                  />
+                </div>
+                <div class="col-1">
+                  <div class="input-group-append">
+                    <button
+                      id="busqueda"
+                      class="btn-fil btn-outline-primary"
+                      type="button"
+                      @click="Conseguir"
+                    >
+                      <span class="fa fa-search"></span>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="center con-selects">
+                    <vs-select
+                      placeholder="Seleccione filtro"
+                      v-model="value"
+                      @input="setSelected"
+                    >
+                      <vs-option
+                        class="item"
+                        label="Id Tramite"
+                        value="id"
+                        id="id"
+                      >
+                        Id Tramite
+                      </vs-option>
+                      <vs-option
+                        class="item"
+                        label="Estado"
+                        value="estado"
+                        id="estado"
+                      >
+                        Estado
+                      </vs-option>
+                      <vs-option
+                        class="item"
+                        label="Cedula cliente"
+                        value="cedula"
+                        id="cedula"
+                      >
+                        Cedula cliente
+                      </vs-option>
+                      <vs-option
+                        class="item"
+                        label="Fecha registro"
+                        value="fecha"
+                        id="fecha"
+                      >
+                        Fecha registro
+                      </vs-option>
+                      <vs-option
+                        class="item"
+                        label="Todos los datos"
+                        value="todos"
+                        id="todos"
+                      >
+                        Todos los datos
+                      </vs-option>
+                      <template #message-success>
+                        Seleccione un item a filtrar
+                      </template>
+                    </vs-select>
+                  </div>
+                </div>
               </div>
-              <div><br /></div>
-              <div class="center con-selects">
-                <vs-select
-                  placeholder="Seleccione filtro"
-                  v-model="value"
-                  @input="setSelected"
-                >
-                  <vs-option class="item" label="Id Tramite" value="id" id="id">
-                    Id Tramite
-                  </vs-option>
-                  <vs-option
-                    class="item"
-                    label="Estado"
-                    value="estado"
-                    id="estado"
-                  >
-                    Estado
-                  </vs-option>
-                  <vs-option
-                    class="item"
-                    label="Cedula cliente"
-                    value="cedula"
-                    id="cedula"
-                  >
-                    Cedula cliente
-                  </vs-option>
-                  <vs-option
-                    class="item"
-                    label="Fecha de ingreso"
-                    value="fecha"
-                    id="fecha"
-                  >
-                    Fecha de ingreso
-                  </vs-option>
-                  <vs-option
-                    class="item"
-                    label="Todos los datos"
-                    value="todos"
-                    id="todos"
-                  >
-                    Todos los datos
-                  </vs-option>
-                  <template #message-success>
-                    Seleccione un item a filtrar
-                  </template>
-                </vs-select>
-              </div>
-            </div>
             </div>
             <div class="mt-5">
               <div class="table-responsive-sm table-light table-bordered">
@@ -318,7 +326,7 @@ export default {
       }
       if (values == "fecha") {
         document.getElementById("txtbusqueda").placeholder =
-          "Digite la fecha de ingreso con el siguiente formato yyyy-mm-dd";
+          "Digite la fecha con el formato yyyy-mm-dd";
       }
     },
   },
