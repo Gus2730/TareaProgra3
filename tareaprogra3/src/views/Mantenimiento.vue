@@ -148,25 +148,25 @@
               <div class="row justify-content-center">
                 <div class="col-3-left">
                   <div class="input-group-append">
-                  <button type="button" class="btn btn-outline-danger" @click="showModal">
-                    <b-icon icon="box-arrow-left" aria-hidden="true"> </b-icon>
+                  <button type="button" class="btn btn-outline-danger" @click="showModal1">
+                    <!-- <b-icon icon="box-arrow-left" aria-hidden="true"> </b-icon> -->
                     Cancelar
                   </button>
                   <div>
-                    <b-modal ref="my-modal" hide-footer title="Alerta">
+                    <b-modal ref="my-modal1" hide-footer title="Alerta">
                       <div class="d-block text-center">
                         <h3>¿Seguro que quieres cancelar?</h3>
                       </div>
                       <b-button
                         class="mt-3"
-                        variant="outline-warning"
+                        variant="outline-danger"
                         block
-                        @click="hideModal"
+                        @click="hideModal1"
                         >Cancelar</b-button
                       >
                       <b-button
                         class="mt-2"
-                        variant="outline-danger"
+                        variant="outline-success"
                         block
                         @click="volverTramites"
                         >Aceptar</b-button
@@ -179,10 +179,31 @@
                   <button
                     type="button"
                     class="btn btn-outline-primary"
-                    @click="clickGuarda"
+                    @click="showModal2"
                   >
                     Guardar
                   </button>
+                  <div>
+                    <b-modal ref="my-modal2" hide-footer title="Alerta">
+                      <div class="d-block text-center">
+                        <h3>¿Seguro que quieres guardar?</h3>
+                      </div>
+                      <b-button
+                        class="mt-3"
+                        variant="outline-danger"
+                        block
+                        @click="hideModal2"
+                        >Cancelar</b-button
+                      >
+                      <b-button
+                        class="mt-2"
+                        variant="outline-success"
+                        block
+                        @click="clickGuarda"
+                        >Aceptar</b-button
+                      >
+                    </b-modal>
+                  </div>
                 </div>
               </div>
             </div>
@@ -228,7 +249,6 @@ export default {
           tramiteEstado: {
             id: this.value.id,
           },
-
           usuario: {
             id: usu.id,
           },
@@ -242,6 +262,7 @@ export default {
           Authorization: "bearer " + this.tokens,
         },
       });
+      this.volverTramites();
     },
     seleccionar() {
       var obj = JSON.parse(sessionStorage.getItem("user"));
@@ -270,11 +291,17 @@ export default {
         $("#myselect").val(obj.cambioEstadoActual.tramiteEstado.nombre);
       });
     },
-    hideModal() {
-      this.$refs["my-modal"].hide();
+    hideModal1() {
+      this.$refs["my-modal1"].hide();
     },
-    showModal() {
-      this.$refs["my-modal"].show();
+    hideModal2() {
+      this.$refs["my-modal2"].hide();
+    },
+    showModal1() {
+      this.$refs["my-modal1"].show();
+    },
+    showModal2() {
+      this.$refs["my-modal2"].show();
     },
     volverTramites() {
       window.location.href = "/Tramites";
@@ -290,16 +317,16 @@ export default {
       },
     })
       .then(function (response) {
-        // if (response.status != 200) {
-        //   Swal.fire({
-        //     icon: "error",
-        //     title: "Oops...",
-        //     text:
-        //       "Ocurrió un error al ingresar, por favor verifique los datos ingresados o su conexíon a internet!",
-        //     confirmButtonText: `OK`,
-        //     timer: 10000,
-        //   });
-        // }
+        if (response.status != 200) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text:
+              "Ocurrió un error al ingresar, por favor verifique los datos ingresados o su conexíon a internet!",
+            confirmButtonText: `OK`,
+            timer: 10000,
+          });
+        }
         return response.json();
       })
       .then((datos) => {
