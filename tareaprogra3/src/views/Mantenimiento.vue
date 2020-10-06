@@ -147,9 +147,33 @@
               <br />
               <div class="row justify-content-center">
                 <div class="col-3-left">
-                  <button type="button" class="btn btn-outline-danger">
+                  <div class="input-group-append">
+                  <button type="button" class="btn btn-outline-danger" @click="showModal">
+                    <b-icon icon="box-arrow-left" aria-hidden="true"> </b-icon>
                     Cancelar
                   </button>
+                  <div>
+                    <b-modal ref="my-modal" hide-footer title="Alerta">
+                      <div class="d-block text-center">
+                        <h3>¿Seguro que quieres cancelar?</h3>
+                      </div>
+                      <b-button
+                        class="mt-3"
+                        variant="outline-warning"
+                        block
+                        @click="hideModal"
+                        >Cancelar</b-button
+                      >
+                      <b-button
+                        class="mt-2"
+                        variant="outline-danger"
+                        block
+                        @click="volverTramites"
+                        >Aceptar</b-button
+                      >
+                    </b-modal>
+                  </div>
+                  </div>
                 </div>
                 <div class="col-3-left">
                   <button
@@ -186,7 +210,7 @@ export default {
       tramitetipo: "",
       nota: [],
       resulNota: "",
-      tokens:""
+      tokens: "",
       // tramite:[]
     };
   },
@@ -198,20 +222,20 @@ export default {
       console.log(this.value.id);
       var usu = JSON.parse(sessionStorage.getItem("user1"));
       var tra = JSON.parse(sessionStorage.getItem("user"));
-      fetch('http://localhost:8099/tramites_cambio_estado/', {
-            method: 'POST',
-            body: JSON.stringify({
-                "tramiteEstado": {
-                    "id": this.value.id
-                       },
+      fetch("http://localhost:8099/tramites_cambio_estado/", {
+        method: "POST",
+        body: JSON.stringify({
+          tramiteEstado: {
+            id: this.value.id,
+          },
 
-             "usuario":{
-                 "id": usu.id
-                   },
-               "tramiteRegistrado":{
-                  "id": tra.id
-                 }
-            }),
+          usuario: {
+            id: usu.id,
+          },
+          tramiteRegistrado: {
+            id: tra.id,
+          },
+        }),
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -246,6 +270,15 @@ export default {
         $("#myselect").val(obj.cambioEstadoActual.tramiteEstado.nombre);
       });
     },
+    hideModal() {
+      this.$refs["my-modal"].hide();
+    },
+    showModal() {
+      this.$refs["my-modal"].show();
+    },
+    volverTramites() {
+      window.location.href = "/Tramites";
+    },
   },
   created: function () {
     this.tokens = sessionStorage.getItem("tok");
@@ -276,6 +309,7 @@ export default {
       .catch((error) => console.error("Error:", error))
       .then((response) => console.log("Success:", response));
   },
+  
 };
 </script>
 
