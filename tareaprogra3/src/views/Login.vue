@@ -59,13 +59,15 @@
             </div>
             <div class="form-group">
               <div class="btn text-center">
-                <input
+                <button
                   type="button"
-                  @click="inicio"
-                  value="Ingresar"
-                  id="inicio"
                   class="btn btn-outline-primary"
-                />
+                  @click="inicio"
+                  id="inicio"
+                >
+                  <b-icon icon="box-arrow-in-right" aria-hidden="true"> </b-icon>
+                    INGRESAR
+                </button>
               </div>
             </div>
           </form>
@@ -116,7 +118,7 @@ export default {
         },
       })
         .then(function (response) {
-          if (response.status != 200) {        
+          if (response.status != 200) {
             estado1 = false;
             Swal.fire({
               icon: "error",
@@ -136,12 +138,12 @@ export default {
           sessionStorage.setItem("tok", dato);
           sessionStorage.setItem("user1", JSON.stringify(data.usuario));
           if (estado1 == true) {
-            console.log("Estado: " + estado1);        
+            console.log("Estado: " + estado1);
             window.location.href = "/Tramites";
           }
         })
         .catch(
-          (error) => console.error("Error:", error)         
+          (error) => console.error("Error:", error)
           // Swal.fire({
           //     icon: 'error',
           //     title: 'Oops...',

@@ -123,11 +123,12 @@
             <div class="mt-5">
               <div class="text-right">
               <button
-                id="busqueda"
+                id="editar"
                 class="btn btn-outline-primary"
                 type="button"
-                @click="imprimir"
+                @click="editar"
               >
+              <b-icon icon="pencil-square" aria-hidden="true"> </b-icon>
                 Editar
               </button>
               </div>
@@ -221,7 +222,8 @@ export default {
       value: "Ingrese su busqueda",
       filtro: "",
       currentPage: 1,
-      selected: {},
+      selected: null,
+      datoSelect: null,
     };
   },
   computed: {
@@ -317,10 +319,21 @@ export default {
     volverLogin() {
       window.location.href = "/";
     },
-    imprimir() {
-      var dato = this.selected;
-      sessionStorage.setItem("user", JSON.stringify(dato));
-      window.location.href = "/Mantenimiento";
+    editar() {
+      this.datoSelect = null;
+      this.datoSelect = this.selected;
+      if(this.datoSelect){
+        sessionStorage.setItem("user", JSON.stringify(this.datoSelect));
+        window.location.href = "/Mantenimiento";
+      }else{
+        Swal.fire({
+              icon: "error",
+              title: "ERROR",
+              text: "Seleccione un objeto para editarlo",
+              confirmButtonText: `OK`,
+              timer: 10000,
+        });
+      }
     },
     setSelected(values) {
       this.filtro = "";
