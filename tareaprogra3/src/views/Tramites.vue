@@ -57,7 +57,7 @@
                   <div class="input-group-append">
                     <button
                       id="busqueda"
-                      class="btn-fil btn-outline-primary"
+                      class="btn-fil btn-primary"
                       type="button"
                       @click="Conseguir"
                     >
@@ -121,9 +121,19 @@
               </div>
             </div>
             <div class="mt-5">
+              <div class="text-right">
+              <button
+                id="busqueda"
+                class="btn btn-outline-primary"
+                type="button"
+                @click="imprimir"
+              >
+                Editar
+              </button>
+              </div>
               <div class="table-responsive-sm table-light table-bordered">
                 <div class="center">
-                  <vs-table>
+                  <vs-table v-model="selected">
                     <template #thead>
                       <vs-tr>
                         <vs-th>Id tramite</vs-th>
@@ -136,6 +146,8 @@
                       <vs-tr
                         :key="i"
                         v-for="(tr, i) in $vs.getPage(tramites, page, max)"
+                        :data="tr"
+                        :is-selected="selected == tr"
                       >
                         <vs-td>
                           {{ tr.id }}
@@ -151,26 +163,6 @@
                             getHumanDate(tr.cambioEstadoActual.fechaRegistro)
                           }}
                         </vs-td>
-                        <template #expand>
-                          <div class="con-content">
-                            <div>
-                              <!-- <vs-avatar>
-                                  <img
-                                    :src="`/avatars/avatar-${i + 1}.png`"
-                                    alt=""
-                                  />
-                                </vs-avatar> -->
-                              <!-- <p>
-                                  {{ tr.nombreCompleto }}
-                                </p> -->
-                            </div>
-                            <div>
-                              <vs-button flat icon @click="imprimir(tr)">
-                                Cambiar estado
-                              </vs-button>
-                            </div>
-                          </div>
-                        </template>
                       </vs-tr>
                     </template>
                     <template #footer>
@@ -229,6 +221,7 @@ export default {
       value: "Ingrese su busqueda",
       filtro: "",
       currentPage: 1,
+      selected: {},
     };
   },
   computed: {
@@ -324,7 +317,8 @@ export default {
     volverLogin() {
       window.location.href = "/";
     },
-    imprimir(dato) {
+    imprimir() {
+      var dato = this.selected;
       sessionStorage.setItem("user", JSON.stringify(dato));
       window.location.href = "/Mantenimiento";
     },
@@ -355,7 +349,7 @@ export default {
     },
     hideModal() {
       this.$refs["my-modal"].hide();
-    }
+    },
   },
   created: function () {
     this.Conseguir();
