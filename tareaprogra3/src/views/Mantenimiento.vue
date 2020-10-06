@@ -101,7 +101,7 @@
                     <option
                       :key="index"
                       v-for="(item, index) in estados"
-                      :value="item"
+                      :value="item.nombre"
                     >
                       {{ item.nombre }}
                     </option>
@@ -148,31 +148,35 @@
               <div class="row justify-content-center">
                 <div class="col-3-left">
                   <div class="input-group-append">
-                  <button type="button" class="btn btn-outline-danger" @click="showModal1">
-                    <!-- <b-icon icon="box-arrow-left" aria-hidden="true"> </b-icon> -->
-                    Cancelar
-                  </button>
-                  <div>
-                    <b-modal ref="my-modal1" hide-footer title="Alerta">
-                      <div class="d-block text-center">
-                        <h3>¿Seguro que quieres cancelar?</h3>
-                      </div>
-                      <b-button
-                        class="mt-3"
-                        variant="outline-danger"
-                        block
-                        @click="hideModal1"
-                        >Cancelar</b-button
-                      >
-                      <b-button
-                        class="mt-2"
-                        variant="outline-success"
-                        block
-                        @click="volverTramites"
-                        >Aceptar</b-button
-                      >
-                    </b-modal>
-                  </div>
+                    <button
+                      type="button"
+                      class="btn btn-outline-danger"
+                      @click="showModal1"
+                    >
+                      <!-- <b-icon icon="box-arrow-left" aria-hidden="true"> </b-icon> -->
+                      Cancelar
+                    </button>
+                    <div>
+                      <b-modal ref="my-modal1" hide-footer title="Alerta">
+                        <div class="d-block text-center">
+                          <h3>¿Seguro que quieres cancelar?</h3>
+                        </div>
+                        <b-button
+                          class="mt-3"
+                          variant="outline-danger"
+                          block
+                          @click="hideModal1"
+                          >Cancelar</b-button
+                        >
+                        <b-button
+                          class="mt-2"
+                          variant="outline-success"
+                          block
+                          @click="volverTramites"
+                          >Aceptar</b-button
+                        >
+                      </b-modal>
+                    </div>
                   </div>
                 </div>
                 <div class="col-3-left">
@@ -232,6 +236,9 @@ export default {
       nota: [],
       resulNota: "",
       tokens: "",
+      usu:"",
+      tra:"",
+      selectt:""
       // tramite:[]
     };
   },
@@ -240,28 +247,68 @@ export default {
   },
   methods: {
     clickGuarda: function () {
-      console.log(this.value.id);
-      var usu = JSON.parse(sessionStorage.getItem("user1"));
-      var tra = JSON.parse(sessionStorage.getItem("user"));
-      fetch("http://localhost:8099/tramites_cambio_estado/", {
-        method: "POST",
-        body: JSON.stringify({
-          tramiteEstado: {
-            id: this.value.id,
+      var estadoID;
+      var idex;
+      var select=this.tra.cambioEstadoActual.tramiteEstado.nombre;
+      for(idex=0;idex<this.estados.length;idex++)
+      {
+        if(this.value!=select)
+        {
+          if(this.estados[idex].nombre==this.value)
+          {
+            
+              estadoID=this.estados[idex].id;
+          }
+        }
+      }
+      console.log("id estado"+estadoID);
+      console.log("id selectt"+this.value);
+      console.log("id select"+select);
+        fetch("http://localhost:8099/tramites_cambio_estado/", {
+          method: "POST",
+          body: JSON.stringify({
+            tramiteEstado: {
+              id: estadoID,
+            },
+            usuario: {
+              id: this.usu.id,
+            },
+            tramiteRegistrado: {
+              id: this.tra.id,
+            },
+          }),
+
+          headers: {
+            "Content-type": "application/json",
+            Accept: "application/json",
+            Authorization: "bearer " + this.tokens,
           },
-          usuario: {
-            id: usu.id,
-          },
-          tramiteRegistrado: {
-            id: tra.id,
-          },
-        }),
-        headers: {
-          "Content-type": "application/json",
-          Accept: "application/json",
-          Authorization: "bearer " + this.tokens,
-        },
-      });
+        }).then(function (response) {
+          if (response.status == 401) {
+            loading.close();
+            Swal.fire({
+              icon: "error",
+              title: "ERROR",
+              text:
+                "Ocurrió un error el token es incorrecto o ha expirado, por favor vuelva a identificarse!",
+              confirmButtonText: `OK`,
+            }).then(() => {
+              window.location.href = "/";
+            });
+          } else if (response.status != 200) {
+            loading.close();
+            Swal.fire({
+              icon: "error",
+              title: "ERROR",
+              text:
+                "Ocurrió un error al guardar, por favor verifique los datos ingresados o su conexíon a internet!",
+              confirmButtonText: `OK`,
+              timer: 10000,
+            });
+          }
+          return response.json();
+        });
+
       this.volverTramites();
     },
     seleccionar() {
@@ -286,7 +333,8 @@ export default {
           this.resulNota = this.resulNota + this.nota[idex].contenido + ".";
         }
       }
-      //console.log(obj.cliente.cedula);
+      
+      
       $(document).ready(function () {
         $("#myselect").val(obj.cambioEstadoActual.tramiteEstado.nombre);
       });
@@ -309,6 +357,8 @@ export default {
   },
   created: function () {
     this.tokens = sessionStorage.getItem("tok");
+    this.usu = JSON.parse(sessionStorage.getItem("user1"));
+    this.tra = JSON.parse(sessionStorage.getItem("user"));
     fetch("http://localhost:8099/tramites_estados", {
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -336,7 +386,6 @@ export default {
       .catch((error) => console.error("Error:", error))
       .then((response) => console.log("Success:", response));
   },
-  
 };
 </script>
 
