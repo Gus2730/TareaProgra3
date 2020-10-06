@@ -62,6 +62,9 @@ color: black;
 width: 250px;
 height: auto;
 } */
+.d-block {
+  color: black;
+}
 .form-group textarea{
     height: 70px;
 }
@@ -77,6 +80,7 @@ height: auto;
   font-size:14px;
   background-color:rgb(21, 21, 197);
 }
+
 /* .btn-fil{
 width: 52px;
 height: 40px;

@@ -159,21 +159,22 @@
                     <div>
                       <b-modal ref="my-modal1" hide-footer title="Alerta">
                         <div class="d-block text-center">
-                          <h3>¿Seguro que quieres cancelar?</h3>
+                          <h3>Seguro que quieres regresar a la ventana anterior?</h3>
                         </div>
-                        <b-button
-                          class="mt-3"
-                          variant="outline-danger"
-                          block
-                          @click="hideModal1"
-                          >Cancelar</b-button
-                        >
+                        
                         <b-button
                           class="mt-2"
                           variant="outline-success"
                           block
                           @click="volverTramites"
-                          >Aceptar</b-button
+                          >Si</b-button
+                        >
+                        <b-button
+                          class="mt-3"
+                          variant="outline-danger"
+                          block
+                          @click="hideModal1"
+                          >No</b-button
                         >
                       </b-modal>
                     </div>
@@ -188,27 +189,56 @@
                     Guardar
                   </button>
                   <div>
-                    <b-modal ref="my-modal2" hide-footer title="Alerta">
+                    <b-modal ref="my-modal2" hide-footer title="Confirmación">
                       <div class="d-block text-center">
                         <h3>¿Seguro que quieres guardar?</h3>
                       </div>
-                      <b-button
-                        class="mt-3"
-                        variant="outline-danger"
-                        block
-                        @click="hideModal2"
-                        >Cancelar</b-button
-                      >
+                      
                       <b-button
                         class="mt-2"
                         variant="outline-success"
                         block
                         @click="clickGuarda"
-                        >Aceptar</b-button
+                        >Si</b-button
+                      >
+                      <b-button
+                        class="mt-3"
+                        variant="outline-danger"
+                        block
+                        @click="hideModal2"
+                        >No</b-button
                       >
                     </b-modal>
                   </div>
+                  <div>
+                  <b-modal ref="GuardarCorrecto" hide-footer title="Informacion">
+                    <div class="d-block text-center">
+                      <h3>
+                        La información se guardó correctamente.
+                      </h3>
+                    </div>
+                    <b-button class="mt-3" variant="outline-warning" block
+                    @click="Alerta1"
+                      >OK!</b-button
+                    >
+                  </b-modal>
                 </div>
+                </div>
+                <div>
+                  <b-modal ref="ErrorGuardar" hide-footer title="Warning">
+                    <div class="d-block text-center">
+                      <h3>
+                        La acción realizada no es permitida, ya que no realizó
+                        ningún cambio.
+                      </h3>
+                    </div>
+                    <b-button class="mt-3" variant="outline-warning" block
+                    @click="Alerta1"
+                      >OK!</b-button
+                    >
+                  </b-modal>
+                </div>
+                
               </div>
             </div>
           </form>
@@ -236,9 +266,10 @@ export default {
       nota: [],
       resulNota: "",
       tokens: "",
-      usu:"",
-      tra:"",
-      selectt:""
+      usu: "",
+      tra: "",
+      selectt: "",
+      respon:""
       // tramite:[]
     };
   },
@@ -249,21 +280,20 @@ export default {
     clickGuarda: function () {
       var estadoID;
       var idex;
-      var select=this.tra.cambioEstadoActual.tramiteEstado.nombre;
-      for(idex=0;idex<this.estados.length;idex++)
-      {
-        if(this.value!=select)
-        {
-          if(this.estados[idex].nombre==this.value)
-          {
-            
-              estadoID=this.estados[idex].id;
+      var select = this.tra.cambioEstadoActual.tramiteEstado.nombre;
+
+      for (idex = 0; idex < this.estados.length; idex++) {
+        if (this.value != select) {
+          if (this.estados[idex].nombre == this.value) {
+            estadoID = this.estados[idex].id;
           }
         }
       }
-      console.log("id estado"+estadoID);
-      console.log("id selectt"+this.value);
-      console.log("id select"+select);
+      console.log("id estado" + estadoID);
+      console.log("id selectt" + this.value);
+      console.log("id select" + select);
+      if (estadoID != null && this.value != null) {
+        var respon;
         fetch("http://localhost:8099/tramites_cambio_estado/", {
           method: "POST",
           body: JSON.stringify({
@@ -283,7 +313,8 @@ export default {
             Accept: "application/json",
             Authorization: "bearer " + this.tokens,
           },
-        }).then(function (response) {
+        })
+        .then(function (response)  {
           if (response.status == 401) {
             loading.close();
             Swal.fire({
@@ -306,10 +337,14 @@ export default {
               timer: 10000,
             });
           }
-          return response.json();
+          return response;
         });
-
-      this.volverTramites();
+        
+      } else {
+        this.$refs["my-modal2"].hide();
+        this.$refs["ErrorGuardar"].show();
+      }
+      //this.volverTramites();
     },
     seleccionar() {
       var obj = JSON.parse(sessionStorage.getItem("user"));
@@ -333,14 +368,15 @@ export default {
           this.resulNota = this.resulNota + this.nota[idex].contenido + ".";
         }
       }
-      
-      
       $(document).ready(function () {
         $("#myselect").val(obj.cambioEstadoActual.tramiteEstado.nombre);
       });
     },
     hideModal1() {
       this.$refs["my-modal1"].hide();
+    },
+    Alerta1() {
+      this.$refs["ErrorGuardar"].hide();
     },
     hideModal2() {
       this.$refs["my-modal2"].hide();
