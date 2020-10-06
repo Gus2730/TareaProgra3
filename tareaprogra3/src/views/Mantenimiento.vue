@@ -204,13 +204,11 @@ export default {
       {
         if(idex>0)
         {
-          this.resulNota= this.resulNota+"\n"+this.nota[idex].contenido;
+          this.resulNota= this.resulNota+"\n"+this.nota[idex].contenido+".";
         }
         else{
-           this.resulNota= this.resulNota+this.nota[idex].contenido;
+           this.resulNota= this.resulNota+this.nota[idex].contenido+".";
         }
-        
-        
       }
       //console.log(obj.cliente.cedula);
        $(document).ready(function () {
