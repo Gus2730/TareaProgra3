@@ -140,21 +140,26 @@ export default {
           if (estado1 == true) {
             console.log("Estado: " + estado1);
             window.location.href = "/Tramites";
+          }else{
+            alertError("Ocurrió un error al ingresar, por favor verifique los datos ingresados o su conexión a internet!");
           }
         })
-        .catch(
-          (error) => console.error("Error:", error)
-          // Swal.fire({
-          //     icon: 'error',
-          //     title: 'Oops...',
-          //     text: 'Ocurrió un error al tratar de ingresar, por favor verifique su conexíon a internet y revise si el servidor se encuentra en linea!',
-          //     confirmButtonText: `OK`,
-          //     timer: 20000})
+        .catch((error) => 
+          this.alertError("Ocurrió un error al ingresar, por favor verifique los datos ingresados o su conexión a internet!")
         )
         .then((response) => console.log("Success:", response));
       setTimeout(() => {
         loading.close();
       }, time);
+    },
+    alertError(mensaje){
+      Swal.fire({
+                icon: "error",
+                title: "ERROR",
+                text: mensaje,
+                confirmButtonText: `OK`,
+                timer: 10000,
+              });
     },
     mostrarPassword() {
       var cambio = document.getElementById("password");

@@ -1,16 +1,8 @@
 <template>
   <div class="container-sm">
-    <!-- <link rel="stylesheet" type="text/css" href="@./css/style1.css"> -->
     <div class="d-flex justify-content-center h-100">
       <div class="card">
-        <div class="imgcontainer">
-          <!-- <img
-            src="@/assets/usuario.png"
-            alt="Avatar"
-            class="avatar"
-            style="background-color: transparent"
-          /> -->
-        </div>
+        <div class="imgcontainer"></div>
         <div class="card-header">
           <td></td>
           <h3>{{ titulo }}</h3>
@@ -146,99 +138,29 @@
               </div>
               <br />
               <div class="row justify-content-center">
-                <div class="col-3-left">
+                <div class="col-3">
                   <div class="input-group-append">
                     <button
                       type="button"
                       class="btn btn-outline-danger"
-                      @click="showModal1"
+                      @click="ConfirmacionAlertCancelar"
                     >
-                      <!-- <b-icon icon="box-arrow-left" aria-hidden="true"> </b-icon> -->
-                      Cancelar
+                      <b-icon icon="box-arrow-left" aria-hidden="true">
+                      </b-icon>
+                      CANCELAR
                     </button>
-                    <div>
-                      <b-modal ref="my-modal1" hide-footer title="Alerta">
-                        <div class="d-block text-center">
-                          <h3>Seguro que quieres regresar a la ventana anterior?</h3>
-                        </div>
-                        
-                        <b-button
-                          class="mt-2"
-                          variant="outline-success"
-                          block
-                          @click="volverTramites"
-                          >Si</b-button
-                        >
-                        <b-button
-                          class="mt-3"
-                          variant="outline-danger"
-                          block
-                          @click="hideModal1"
-                          >No</b-button
-                        >
-                      </b-modal>
-                    </div>
                   </div>
                 </div>
-                <div class="col-3-left">
+                <div class="col-3">
                   <button
                     type="button"
                     class="btn btn-outline-primary"
-                    @click="showModal2"
+                    @click="ConfirmacionAlertGuardar"
                   >
-                    Guardar
+                    <b-icon icon="hdd" aria-hidden="true"> </b-icon>
+                    GUARDAR
                   </button>
-                  <div>
-                    <b-modal ref="my-modal2" hide-footer title="Confirmación">
-                      <div class="d-block text-center">
-                        <h3>¿Seguro que quieres guardar?</h3>
-                      </div>
-                      
-                      <b-button
-                        class="mt-2"
-                        variant="outline-success"
-                        block
-                        @click="clickGuarda"
-                        >Si</b-button
-                      >
-                      <b-button
-                        class="mt-3"
-                        variant="outline-danger"
-                        block
-                        @click="hideModal2"
-                        >No</b-button
-                      >
-                    </b-modal>
-                  </div>
-                  <div>
-                  <b-modal ref="GuardarCorrecto" hide-footer title="Informacion">
-                    <div class="d-block text-center">
-                      <h3>
-                        La información se guardó correctamente.
-                      </h3>
-                    </div>
-                    <b-button class="mt-3" variant="outline-warning" block
-                    @click="Alerta1"
-                      >OK!</b-button
-                    >
-                  </b-modal>
                 </div>
-                </div>
-                <div>
-                  <b-modal ref="ErrorGuardar" hide-footer title="Warning">
-                    <div class="d-block text-center">
-                      <h3>
-                        La acción realizada no es permitida, ya que no realizó
-                        ningún cambio.
-                      </h3>
-                    </div>
-                    <b-button class="mt-3" variant="outline-warning" block
-                    @click="Alerta1"
-                      >OK!</b-button
-                    >
-                  </b-modal>
-                </div>
-                
               </div>
             </div>
           </form>
@@ -269,16 +191,15 @@ export default {
       usu: "",
       tra: "",
       selectt: "",
-      respon:""
-      // tramite:[]
+      respon: "",
     };
   },
   computed: {
     ...mapState(["token"]),
   },
   methods: {
-    clickGuarda: function () {
-      var estadoID;
+    clickGuarda() {
+      var estadoID = null;
       var idex;
       var select = this.tra.cambioEstadoActual.tramiteEstado.nombre;
 
@@ -289,10 +210,7 @@ export default {
           }
         }
       }
-      console.log("id estado" + estadoID);
-      console.log("id selectt" + this.value);
-      console.log("id select" + select);
-      if (estadoID != null && this.value != null) {
+      if (estadoID != null) {
         var respon;
         fetch("http://localhost:8099/tramites_cambio_estado/", {
           method: "POST",
@@ -313,36 +231,18 @@ export default {
             Accept: "application/json",
             Authorization: "bearer " + this.tokens,
           },
-        })
-        .then(function (response)  {
+        }).then((response)=> {
           if (response.status == 401) {
-            loading.close();
-            Swal.fire({
-              icon: "error",
-              title: "ERROR",
-              text:
-                "Ocurrió un error el token es incorrecto o ha expirado, por favor vuelva a identificarse!",
-              confirmButtonText: `OK`,
-            }).then(() => {
-              window.location.href = "/";
-            });
-          } else if (response.status != 200) {
-            loading.close();
-            Swal.fire({
-              icon: "error",
-              title: "ERROR",
-              text:
-                "Ocurrió un error al guardar, por favor verifique los datos ingresados o su conexíon a internet!",
-              confirmButtonText: `OK`,
-              timer: 10000,
-            });
+            this.alertErrorToken();
+          } else if (response.status != 201) {
+              this.alertError("Error al guardar el estado");
+          } else if (response.status == 201) {
+            this.guardadoExitoso();
           }
           return response;
         });
-        
       } else {
-        this.$refs["my-modal2"].hide();
-        this.$refs["ErrorGuardar"].show();
+        this.alertError("No hubo ningun cambio el esstado");
       }
       //this.volverTramites();
     },
@@ -372,55 +272,102 @@ export default {
         $("#myselect").val(obj.cambioEstadoActual.tramiteEstado.nombre);
       });
     },
-    hideModal1() {
-      this.$refs["my-modal1"].hide();
-    },
-    Alerta1() {
-      this.$refs["ErrorGuardar"].hide();
-    },
-    hideModal2() {
-      this.$refs["my-modal2"].hide();
-    },
-    showModal1() {
-      this.$refs["my-modal1"].show();
-    },
-    showModal2() {
-      this.$refs["my-modal2"].show();
-    },
     volverTramites() {
       window.location.href = "/Tramites";
     },
+    ConfirmacionAlertGuardar(data) {
+      Swal.fire({
+        title: "GUARDAR",
+        text: "¿Desea guardar el cambio de esatdo?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, guardar",
+        cancelButtonText: "No, cancelar",
+      }).then((resultado) => {
+        if (resultado.value) {
+          this.clickGuarda();
+        }
+      });
+    },
+    guardadoExitoso() {
+      Swal.fire({
+        title: "GUARDAR",
+        text: "Se guardo correctamente",
+        icon: "success",
+        showCancelButton: true,
+        confirmButtonText: `OK`,
+      }).then((resultado) => {
+        if (resultado.value) {
+          this.volverTramites();
+        }
+      });
+    },
+    ConfirmacionAlertCancelar() {
+      Swal.fire({
+        title: "CANCELAR",
+        text: "¿Desea cancelar la edicion del tramite?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, cancelar",
+        cancelButtonText: "No",
+      }).then((resultado) => {
+        if (resultado.value) {
+          this.volverTramites();
+        }
+      });
+    },
+    alertError(mensaje) {
+      Swal.fire({
+        icon: "error",
+        title: "ERROR",
+        text: mensaje,
+        confirmButtonText: `OK`,
+        timer: 10000,
+      });
+    },
+    alertErrorToken() {
+      Swal.fire({
+        icon: "error",
+        title: "ERROR",
+        text: "Su token ha expirado o no es valido, se le redirigirá al login",
+        confirmButtonText: `OK`,
+      }).then(() => {
+        window.location.href = "/";
+      });
+    },
+    obtenerEstados() {
+      this.tokens = sessionStorage.getItem("tok");
+      this.usu = JSON.parse(sessionStorage.getItem("user1"));
+      this.tra = JSON.parse(sessionStorage.getItem("user"));
+      fetch("http://localhost:8099/tramites_estados", {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Accept: "application/json",
+          Authorization: "bearer " + this.tokens,
+        },
+      })
+        .then(function (response) {
+          if (response.status == 401) {
+            this.alertErrorToken();
+          } else if (response.status != 200) {
+            this.alertError("Ocurrió un error al obtener infromacion, por favor verifique su conexíon a internet!");
+          }
+          return response.json();
+        })
+        .then((datos) => {
+          this.estados = datos;
+          this.seleccionar();
+        })
+        .catch((error) =>
+          this.alertError(
+            "Ocurrió un error al obtener lo datos, por favor verifique los datos ingresados o su conexión a internet!"
+          )
+        )
+        .then((response) => console.log("Success:", response));
+    },
   },
   created: function () {
-    this.tokens = sessionStorage.getItem("tok");
-    this.usu = JSON.parse(sessionStorage.getItem("user1"));
-    this.tra = JSON.parse(sessionStorage.getItem("user"));
-    fetch("http://localhost:8099/tramites_estados", {
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        Accept: "application/json",
-        Authorization: "bearer " + this.tokens,
-      },
-    })
-      .then(function (response) {
-        if (response.status != 200) {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text:
-              "Ocurrió un error al ingresar, por favor verifique los datos ingresados o su conexíon a internet!",
-            confirmButtonText: `OK`,
-            timer: 10000,
-          });
-        }
-        return response.json();
-      })
-      .then((datos) => {
-        this.estados = datos;
-        this.seleccionar();
-      })
-      .catch((error) => console.error("Error:", error))
-      .then((response) => console.log("Success:", response));
+    this.obtenerEstados();
   },
 };
 </script>

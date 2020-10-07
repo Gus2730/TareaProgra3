@@ -7,32 +7,11 @@
           <button
             type="button"
             class="btn btn-outline-danger"
-            @click="showModal"
+            @click="ConfirmacionAlertSalir"
           >
             <b-icon icon="box-arrow-left" aria-hidden="true"> </b-icon>
             SALIR
           </button>
-          <div>
-            <b-modal ref="my-modal" hide-footer title="Alerta">
-              <div class="d-block text-center">
-                <h3>¿Seguro que quieres salir?</h3>
-              </div>
-              <b-button
-                class="mt-3"
-                variant="outline-warning"
-                block
-                @click="hideModal"
-                >Cancelar</b-button
-              >
-              <b-button
-                class="mt-2"
-                variant="outline-danger"
-                block
-                @click="volverLogin"
-                >Aceptar</b-button
-              >
-            </b-modal>
-          </div>
         </div>
         <div class="card-header">
           <td />
@@ -122,15 +101,15 @@
             </div>
             <div class="mt-5">
               <div class="text-right">
-              <button
-                id="editar"
-                class="btn btn-outline-primary"
-                type="button"
-                @click="editar"
-              >
-              <b-icon icon="pencil-square" aria-hidden="true"> </b-icon>
-                Editar
-              </button>
+                <button
+                  id="editar"
+                  class="btn btn-outline-primary"
+                  type="button"
+                  @click="editar"
+                >
+                  <b-icon icon="pencil-square" aria-hidden="true"> </b-icon>
+                  Editar
+                </button>
               </div>
               <div class="table-responsive-sm table-light table-bordered">
                 <div class="center">
@@ -219,7 +198,7 @@ export default {
       color: "dark",
       page: 1,
       max: 6,
-      value: "Ingrese su busqueda",
+      value: "",
       filtro: "",
       currentPage: 1,
       selected: null,
@@ -263,56 +242,42 @@ export default {
         .then(function (response) {
           if (response.status == 401) {
             loading.close();
-            Swal.fire({
-              icon: "error",
-              title: "ERROR",
-              text:
-                "Ocurrió un error el token es incorrecto o ha expirado, por favor vuelva a identificarse!",
-              confirmButtonText: `OK`,
-            }).then(() => {
-              window.location.href = "/";
-            });
+            this.alertErrorToken();
           } else if (response.status != 200) {
             loading.close();
-            Swal.fire({
-              icon: "error",
-              title: "ERROR",
-              text:
-                "Ocurrió un error al ingresar, por favor verifique los datos ingresados o su conexíon a internet!",
-              confirmButtonText: `OK`,
-              timer: 10000,
-            });
+            this.alertError(
+              "Ocurrió un error al ingresar, por favor verifique los datos ingresados o su conexíon a internet!"
+            );
           }
           return response.json();
         })
         .then((data) => {
-          this.tramites = null;
-          var i;
-          for (i = 0; i < data.length; i++) {
-            if (data[i].cambioEstadoActual != null) {
-              var date = new Date(data[i].cambioEstadoActual.fechaRegistro);
-              var Horas = 1000 * 60 * 60 * 1;
-              console.log(date.getTime() - Horas);
-              var horaZona = new Date(date.getTime() - Horas);
-              console.log(horaZona);
-              data[i].cambioEstadoActual.fechaRegistro = horaZona;
+          if (data.length > 0) {
+            this.tramites = null;
+            var i;
+            for (i = 0; i < data.length; i++) {
+              if (data[i].cambioEstadoActual != null) {
+                var date = new Date(data[i].cambioEstadoActual.fechaRegistro);
+                var Horas = 1000 * 60 * 60 * 1;
+                console.log(date.getTime() - Horas);
+                var horaZona = new Date(date.getTime() - Horas);
+                console.log(horaZona);
+                data[i].cambioEstadoActual.fechaRegistro = horaZona;
+              }
             }
-          }
 
-          this.tramites = data;
-          console.log(data);
-          dato = data;
+            this.tramites = data;
+            console.log(data);
+            dato = data;
+          } else {
+            this.alertError("No se encontraron datos");
+          }
           loading.close();
         })
-        .catch(
-          (error) => console.error("Error:", error)
-          // Swal.fire({
-          //     icon: 'error',
-          //     title: 'Oops...',
-          //     text: 'Ocurrió un error al tratar de ingresar, por favor verifique su conexíon a internet y revise si el servidor se encuentra en linea!',
-          //     confirmButtonText: `OK`,
-          //     timer: 20000
-          // }))
+        .catch((error) =>
+          this.alertError(
+            "Ocurrió un error al obtener lo datos, por favor verifique los datos ingresados o su conexión a internet!"
+          )
         )
         .then((response) => console.log("Success:", response));
     },
@@ -322,17 +287,11 @@ export default {
     editar() {
       this.datoSelect = null;
       this.datoSelect = this.selected;
-      if(this.datoSelect){
+      if (this.datoSelect) {
         sessionStorage.setItem("user", JSON.stringify(this.datoSelect));
         window.location.href = "/Mantenimiento";
-      }else{
-        Swal.fire({
-              icon: "error",
-              title: "ERROR",
-              text: "Seleccione un objeto para editarlo",
-              confirmButtonText: `OK`,
-              timer: 10000,
-        });
+      } else {
+        this.alertError("Seleccione un objeto para editarlo");
       }
     },
     setSelected(values) {
@@ -362,6 +321,40 @@ export default {
     },
     hideModal() {
       this.$refs["my-modal"].hide();
+    },
+    alertError(mensaje) {
+      Swal.fire({
+        icon: "error",
+        title: "ERROR",
+        text: mensaje,
+        confirmButtonText: `OK`,
+        timer: 10000,
+      });
+    },
+    alertErrorToken() {
+      Swal.fire({
+        icon: "error",
+        title: "ERROR",
+        text:
+          "Su token ha expirado, se le redirigirá al login",
+        confirmButtonText: `OK`,
+      }).then(() => {
+        window.location.href = "/";
+      });
+    },
+    ConfirmacionAlertSalir() {
+      Swal.fire({
+        title: "SALIR",
+        text: "¿Quiere volver al login?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, volver",
+        cancelButtonText: "No, cancelar",
+      }).then((resultado) => {
+        if (resultado.value) {
+          this.volverLogin();
+        }
+      });
     },
   },
   created: function () {
