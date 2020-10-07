@@ -88,7 +88,7 @@ background-color: white;
 
 @media (max-width: 575.98px) {
     html,body{
-    background-image: url("../assets/paisaje.jpg");
+    background-image: url("../assets/fondo-degradado.jpg");
     background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;

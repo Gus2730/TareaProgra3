@@ -70,7 +70,7 @@ border:0 !important;
 
 @media (max-width: 520.98px) {
     html,body{
-    background-image: url("../assets/paisaje.jpg");
+    background-image: url("../assets/fondo-degradado.jpg");
     background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;

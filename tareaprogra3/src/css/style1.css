@@ -87,7 +87,7 @@ body {
 @media (max-width: 575.98px) {
   html,
   body {
-    background-image: url("../assets/fondo.jpg");
+    background-image: url("../assets/fondo-degradado3.jpg");
     background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
