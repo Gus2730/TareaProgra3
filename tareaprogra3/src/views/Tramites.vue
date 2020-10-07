@@ -46,7 +46,7 @@
                 <div class="col-3">
                   <div class="center con-selects">
                     <vs-select
-                      placeholder="Seleccione filtro"
+                      placeholder="Seleccion"
                       v-model="value"
                       @input="setSelected"
                     >
@@ -194,7 +194,7 @@ export default {
       color: "dark",
       page: 1,
       max: 6,
-      value: "",
+      value: "todos",
       filtro: "",
       currentPage: 1,
       selected: null,
@@ -216,7 +216,7 @@ export default {
         text: "Cargando...",
         type: this.type,
       });
-      var dato;
+      var dato=[];
       var textfiltro = "";
       var tokens = sessionStorage.getItem("tok");
       if (this.value == "id") {
@@ -235,20 +235,24 @@ export default {
           Authorization: "bearer " + tokens,
         },
       })
-        .then(function (response) {
+       .then((response)=> {
           if (response.status == 401) {
             loading.close();
-            this.alertErrorToken();
+            this.alertErrorToken("Su token ha expirado, se le redirigirá al login");
+          }else if (response.status == 403) {
+            loading.close();
+            this.alertErrorToken("No cuenta con los permisos adecuados para realizar esta accion, se le redirigirá al login");
           } else if (response.status != 200) {
             loading.close();
             this.alertError(
               "Ocurrió un error al ingresar, por favor verifique los datos ingresados o su conexíon a internet!"
             );
+          }else{
           }
+          
           return response.json();
         })
         .then((data) => {
-          if (data.length > 0) {
             this.tramites = null;
             var i;
             for (i = 0; i < data.length; i++) {
@@ -265,17 +269,15 @@ export default {
             this.tramites = data;
             console.log(data);
             dato = data;
-          } else {
-            this.alertError("No se encontraron datos");
-          }
           loading.close();
         })
         .catch((error) =>
-          this.alertError(
+         this.alertError(
             "Ocurrió un error al obtener lo datos, por favor verifique los datos ingresados o su conexión a internet!"
           )
         )
-        .then((response) => console.log("Success:", response));
+        .then((response) => console.log(response)
+         );
     },
     volverLogin() {
       window.location.href = "/";
@@ -327,12 +329,12 @@ export default {
         timer: 10000,
       });
     },
-    alertErrorToken() {
+    alertErrorToken(mensaje) {
       Swal.fire({
         icon: "error",
         title: "ERROR",
         text:
-          "Su token ha expirado, se le redirigirá al login",
+          mensaje,
         confirmButtonText: `OK`,
       }).then(() => {
         window.location.href = "/";
