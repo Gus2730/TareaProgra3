@@ -116,7 +116,7 @@
                     <template #thead>
                       <vs-tr>
                         <vs-th>Id tramite</vs-th>
-                        <vs-th>Cedula clientte</vs-th>
+                        <vs-th>Cedula cliente</vs-th>
                         <vs-th>Tramite estado</vs-th>
                         <vs-th>Fecha registro</vs-th>
                       </vs-tr>
@@ -303,7 +303,7 @@ export default {
       }
       if (values == "estado") {
         document.getElementById("txtbusqueda").placeholder =
-          "Ingrese finalizado, suspendido o terminado";
+          "Ingrese finalizado, suspendido , cancelado o recibido";
       }
       if (values == "cedula") {
         document.getElementById("txtbusqueda").placeholder =
