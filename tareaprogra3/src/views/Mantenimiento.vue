@@ -258,6 +258,7 @@ export default {
           return response;
         });
       } else {
+         loading.close();
         this.alertError("No hubo ningun cambio de estado");
       }
     },
