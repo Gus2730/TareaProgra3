@@ -171,11 +171,19 @@
 </template>
 <script>
 require("@/css/style3.css");
+import "vuesax/dist/vuesax.css";
 import { mapState } from "vuex";
+Vue.use(Vuesax, {
+});
+import Vue from "vue";
+import Vuesax from "vuesax";
 import moment from "moment";
+import store from "vuex";
+Vue.use(require("vue-moment"));
 export default {
   data() {
     return {
+      type: "square",
       value: null,
       titulo: "Mantenimiento trámites",
       estados: [],
@@ -199,6 +207,10 @@ export default {
   },
   methods: {
     clickGuarda() {
+      const loading = this.$vs.loading({
+        text: "Cargando...",
+        type: this.type,
+      });
       var estadoID = null;
       var idex;
       var select = this.tra.cambioEstadoActual.tramiteEstado.nombre;
@@ -211,6 +223,7 @@ export default {
         }
       }
       if (estadoID != null) {
+        
         var respon;
         fetch("http://localhost:8099/tramites_cambio_estado/", {
           method: "POST",
@@ -232,8 +245,11 @@ export default {
             Authorization: "bearer " + this.tokens,
           },
         }).then((response)=> {
+          loading.close();
           if (response.status == 401) {
-            this.alertErrorToken();
+            this.alertErrorToken("Su token ha expirado, se le redirigirá al login","/");
+          }else if (response.status == 403) {
+            this.alertErrorToken("No cuenta con los permisos adecuados para realizar esta accion, se le redirigirá a la lista de tramites","/Tramites");
           } else if (response.status != 201) {
               this.alertError("Error al guardar el estado");
           } else if (response.status == 201) {
@@ -324,17 +340,21 @@ export default {
         timer: 10000,
       });
     },
-    alertErrorToken() {
+    alertErrorToken(mensaje,url) {
       Swal.fire({
         icon: "error",
         title: "ERROR",
-        text: "Su token ha expirado o no es valido, se le redirigirá al login",
+        text: mensaje,
         confirmButtonText: `OK`,
       }).then(() => {
-        window.location.href = "/";
+        window.location.href = url;
       });
     },
     obtenerEstados() {
+      const loadings = this.$vs.loading({
+        text: "Cargando...",
+        type: this.type,
+      });
       this.tokens = sessionStorage.getItem("tok");
       this.usu = JSON.parse(sessionStorage.getItem("user1"));
       this.tra = JSON.parse(sessionStorage.getItem("user"));
@@ -345,9 +365,12 @@ export default {
           Authorization: "bearer " + this.tokens,
         },
       })
-        .then(function (response) {
-          if (response.status == 401) {
-            this.alertErrorToken();
+        .then((response)=> {
+          loadings.close();
+           if (response.status == 401) {
+            this.alertErrorToken("Su token ha expirado, se le redirigirá al login","/");
+          }else if (response.status == 403) {
+            this.alertErrorToken("No cuenta con los permisos adecuados para realizar esta accion, se le redirigirá a la lista de tramites","/Tramites");
           } else if (response.status != 200) {
             this.alertError("Ocurrió un error al obtener infromacion, por favor verifique su conexíon a internet!");
           }
@@ -358,6 +381,7 @@ export default {
           this.seleccionar();
         })
         .catch((error) =>
+       
           this.alertError(
             "Ocurrió un error al obtener lo datos, por favor verifique los datos ingresados o su conexión a internet!"
           )
