@@ -46,7 +46,7 @@
                 <div class="col-3">
                   <div class="center con-selects">
                     <vs-select
-                      placeholder="Seleccion"
+                      placeholder="Seleccione filtro"
                       v-model="value"
                       @input="setSelected"
                     >
@@ -194,7 +194,7 @@ export default {
       color: "dark",
       page: 1,
       max: 6,
-      value: "todos",
+      value: "",
       filtro: "",
       currentPage: 1,
       selected: null,
