@@ -46,7 +46,6 @@ body {
 .input-group-append span {
   width: 40px;
   height: 50;
-  /* background-color: dodgerblue; */
   color: black;
   border: 0 !important;
   font-size:20px;
@@ -124,7 +123,6 @@ body {
     .input-group-append span {
       width: 20px;
       height: 40;
-      /* background-color: dodgerblue; */
       color: black;
       border: 0 !important;
       font-size: 12px;

@@ -242,9 +242,8 @@ export default {
           return response;
         });
       } else {
-        this.alertError("No hubo ningun cambio el esstado");
+        this.alertError("No hubo ningun cambio de estado");
       }
-      //this.volverTramites();
     },
     seleccionar() {
       var obj = JSON.parse(sessionStorage.getItem("user"));

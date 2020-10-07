@@ -49,19 +49,6 @@ border:0 !important;
   border: 0 !important;
   font-size:15px;
 }
-/* .login_btn{
-font-weight:bold;
-color: black;
-background-color: dodgerblue!important;;
-width: 200px;
-height: auto;
-} */
-/* .btn-info{
-font-weight:bold;
-color: black;
-width: 250px;
-height: auto;
-} */
 .d-block {
   color: black;
 }
@@ -81,15 +68,6 @@ height: auto;
   background-color:rgb(21, 21, 197);
 }
 
-/* .btn-fil{
-width: 52px;
-height: 40px;
-}
-.login_btn:hover{
-font-weight:bold;
-color: black;
-background-color: white;
-} */
 @media (max-width: 520.98px) {
     html,body{
     background-image: url("../assets/paisaje.jpg");
@@ -118,8 +96,6 @@ background-color: white;
     }
     
     .form-control{
-      /* width: 100px;
-      height: 30px; */
       background-color: white;
       color: black;
       border: 0 !important;
@@ -143,7 +119,6 @@ background-color: white;
       .input-group-append span {
         width: 20px;
         height: 40;
-        /* background-color: dodgerblue; */
         color: rgb(255, 255, 255);
         border: 0 !important;
         font-size: 12px;
@@ -157,21 +132,6 @@ background-color: white;
         width: 20%;
         border-radius: 20%;
       }
-      /* .login_btn{
-        font-weight:bold;
-        color: black;
-        background-color: dodgerblue!important;;
-        width: 150px;
-        height: auto;
-        }
-      .btn-info{
-        font-weight: bold;
-        color: black;
-        font-size:14px;
-        background-color: dodgerblue !important;
-        width: 60%;
-        height: 8%;
-      } */
       .item{
         color: black;
         font-size:14px;

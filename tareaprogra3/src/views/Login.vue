@@ -1,6 +1,5 @@
 <template>
   <div class="container-sm">
-    <!-- <link rel="stylesheet" type="text/css" href="@./css/style1.css"> -->
     <div class="d-flex justify-content-center h-100">
       <div class="card">
         <div class="imgcontainer">
@@ -82,9 +81,8 @@ require("@/css/style1.css");
 import Vue from "vue";
 import Vuesax from "vuesax";
 
-import "vuesax/dist/vuesax.css"; //Vuesax styles
+import "vuesax/dist/vuesax.css"; 
 Vue.use(Vuesax, {
-  // options here
 });
 export default {
   name: "Login",

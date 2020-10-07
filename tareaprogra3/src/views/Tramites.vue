@@ -1,5 +1,4 @@
 <template>
-  <!-- <div> -->
   <div class="container-sm">
     <div class="d-flex justify-content-center h-100">
       <div class="card">
@@ -172,8 +171,6 @@
       </div>
     </div>
   </div>
-
-  <!-- </div> -->
 </template>
 
 <script>
@@ -181,9 +178,8 @@ require("@/css/style2.css");
 import Vue from "vue";
 import Vuesax from "vuesax";
 import moment from "moment";
-import "vuesax/dist/vuesax.css"; //Vuesax styles
+import "vuesax/dist/vuesax.css";
 Vue.use(Vuesax, {
-  // options here
 });
 Vue.use(require("vue-moment"));
 import store from "vuex";
