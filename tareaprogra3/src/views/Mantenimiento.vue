@@ -137,7 +137,7 @@
                 </div>
               </div>
               <br />
-              <div class="row justify-content-center">
+              <div class="d-flex row justify-content-center">
                 <div class="col-3">
                   <div class="input-group-append">
                     <button
@@ -249,7 +249,7 @@ export default {
           if (response.status == 401) {
             this.alertErrorToken("Su token ha expirado, se le redirigirá al login","/");
           }else if (response.status == 403) {
-            this.alertErrorToken("No cuenta con los permisos adecuados para realizar esta accion, se le redirigirá a la lista de tramites","/Tramites");
+            this.alertErrorToken("No cuenta con los permisos adecuados para realizar esta acción, se le redirigirá a la lista de tramites","/Tramites");
           } else if (response.status != 201) {
               this.alertError("Error al guardar el estado");
           } else if (response.status == 201) {
@@ -259,7 +259,7 @@ export default {
         });
       } else {
          loading.close();
-        this.alertError("No hubo ningun cambio de estado");
+        this.alertError("No hubo ningún cambio de estado");
       }
     },
     seleccionar() {
@@ -294,7 +294,7 @@ export default {
     ConfirmacionAlertGuardar(data) {
       Swal.fire({
         title: "GUARDAR",
-        text: "¿Desea guardar el cambio de esatdo?",
+        text: "¿Desea guardar el cambio de estado?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Sí, guardar",
@@ -308,7 +308,7 @@ export default {
     guardadoExitoso() {
       Swal.fire({
         title: "GUARDAR",
-        text: "Se guardo correctamente",
+        text: "Se guardó correctamente",
         icon: "success",
         showCancelButton: true,
         confirmButtonText: `OK`,
@@ -321,7 +321,7 @@ export default {
     ConfirmacionAlertCancelar() {
       Swal.fire({
         title: "CANCELAR",
-        text: "¿Desea cancelar la edicion del tramite?",
+        text: "¿Desea cancelar la edición del trámite?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Sí, cancelar",
@@ -373,7 +373,7 @@ export default {
           }else if (response.status == 403) {
             this.alertErrorToken("No cuenta con los permisos adecuados para realizar esta accion, se le redirigirá a la lista de tramites","/Tramites");
           } else if (response.status != 200) {
-            this.alertError("Ocurrió un error al obtener infromacion, por favor verifique su conexíon a internet!");
+            this.alertError("Ocurrió un error al obtener infromación, por favor verifique su conexíon a internet!");
           }
           return response.json();
         })
