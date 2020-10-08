@@ -2,7 +2,7 @@
   <div class="container-sm">
     <div class="d-flex justify-content-center h-100">
       <div class="card">
-        <div class="input-group-append">
+        <div class="boton text-left">
           <button
             type="button"
             class="btn btn-outline-danger"
@@ -20,13 +20,13 @@
         <div class="card-body">
           <form>
             <div class="row justify-content-md-center">
-              <div class="input-group form-group">
+              <div class="input-group form-group-center">
                 <div class="col-8">
                   <input
                     type="text"
                     id="txtbusqueda"
                     class="form-control"
-                    placeholder="Ingrese su busqueda"
+                    placeholder="Ingrese su búsqueda"
                     v-model="filtro"
                     required
                   />
@@ -52,11 +52,11 @@
                     >
                       <vs-option
                         class="item"
-                        label="Id Tramite"
+                        label="Id Trámite"
                         value="id"
                         id="id"
                       >
-                        Id Tramite
+                        Id Trámite
                       </vs-option>
                       <vs-option
                         class="item"
@@ -68,11 +68,11 @@
                       </vs-option>
                       <vs-option
                         class="item"
-                        label="Cedula cliente"
+                        label="Cédula cliente"
                         value="cedula"
                         id="cedula"
                       >
-                        Cedula cliente
+                        Cédula cliente
                       </vs-option>
                       <vs-option
                         class="item"
@@ -91,7 +91,9 @@
                         Todos los datos
                       </vs-option>
                       <template #message-success>
-                        Seleccione un item a filtrar
+                        <label>
+                          Seleccione un item a filtrar
+                        </label>
                       </template>
                     </vs-select>
                   </div>
@@ -115,9 +117,9 @@
                   <vs-table v-model="selected">
                     <template #thead>
                       <vs-tr>
-                        <vs-th>Id tramite</vs-th>
-                        <vs-th>Cedula cliente</vs-th>
-                        <vs-th>Tramite estado</vs-th>
+                        <vs-th>Id trámite</vs-th>
+                        <vs-th>Cédula cliente</vs-th>
+                        <vs-th>Trámite estado</vs-th>
                         <vs-th>Fecha registro</vs-th>
                       </vs-tr>
                     </template>
@@ -241,7 +243,7 @@ export default {
             this.alertErrorToken("Su token ha expirado, se le redirigirá al login");
           }else if (response.status == 403) {
             loading.close();
-            this.alertErrorToken("No cuenta con los permisos adecuados para realizar esta accion, se le redirigirá al login");
+            this.alertErrorToken("No cuenta con los permisos adecuados para realizar esta acción, se le redirigirá al login");
           } else if (response.status != 200) {
             loading.close();
             this.alertError(
@@ -307,7 +309,7 @@ export default {
       }
       if (values == "cedula") {
         document.getElementById("txtbusqueda").placeholder =
-          "Ingrese la cedula del tramite ha buscar";
+          "Ingrese la cédula del trámite ha buscar";
       }
       if (values == "fecha") {
         document.getElementById("txtbusqueda").placeholder =

@@ -67,7 +67,17 @@ border:0 !important;
   font-size:14px;
   background-color:rgb(21, 21, 197);
 }
-
+@media(max-width: 767.98px)
+{
+  .row button
+    {
+      width: 75px;
+        height: 40px;
+        font-size:8px;
+        
+    }
+  
+}
 @media (max-width: 520.98px) {
     html,body{
     background-image: url("../assets/fondo-degradado.jpg");
@@ -81,6 +91,7 @@ border:0 !important;
     flex-wrap: wrap;
     }
    
+    
     .form-group h6{
         color: white;
         text-align: center;
@@ -88,7 +99,7 @@ border:0 !important;
     }
     .form-group button{
         text-align: center;
-        font-size:14px;
+        font-size:8px;
     }
     .form-group input{
         

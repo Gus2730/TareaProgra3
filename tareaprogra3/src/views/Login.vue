@@ -42,7 +42,7 @@
                 v-model="contra"
                 @keyup.enter="inicio"
                 class="form-control"
-                placeholder="Password"
+                placeholder="Contraseña"
                 required
               />
               <div class="input-group-append">
@@ -88,7 +88,7 @@ export default {
   name: "Login",
   data() {
     return {
-      titulo1: "Inicio sesion",
+      titulo1: "Inicio sesión",
       contra: "",
       cedula: "",
       type: "square",
