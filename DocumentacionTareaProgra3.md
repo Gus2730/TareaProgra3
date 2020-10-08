@@ -1,4 +1,5 @@
 # Resumen tarea 1 progra 3
+
 ## Lenguaje JavaScript [![N|Solid](http://drive.google.com/uc?export=view&id=1lDVNN84IUWBBXbpctFzX3pwfJlmaVu-d)]( https://uniwebsidad.com/libros/javascript)
     JavaScript es un lenguaje de programación que se utiliza principalmente para crear páginas web dinámicas.
 	Una página web dinámica es aquella que incorpora efectos como texto que aparece y desaparece, animaciones, acciones que se activan al pulsar botones y ventanas con mensajes de aviso al usuario.
@@ -8,7 +9,7 @@
 ## Editor Visual Studio Code [![N|Solid](http://drive.google.com/uc?export=view&id=1fA9enVfv8c9N3QNX54MHRd5dhvodSYK8)](https://code.visualstudio.com/?wt.mc_id=DX_841432)
     Visual Studio Code es un editor de código optimizado con soporte para operaciones de desarrollo como depuración, ejecución de tareas y control de versiones. Su objetivo es proporcionar solo las herramientas que un desarrollador necesita para un ciclo rápido de código, compilación y depuración
     
-## Pasos utilizados para crear la aplicación, ejecutarla y utilizarla
+## Pasos utilizados para crear la aplicación y ejecutarla
 #
     Para crear un proyecto de vue se necesita ejecutar una serie de comandos desde el powershell de windows, para ello deberemos ejecutar este programa como modo administrador con el fin de aplicar los comandos a mencionar:
 - npm install vue
@@ -41,10 +42,24 @@ Ademas se utilizaron las siguientes librerías como complemento para desarrollar
 - npm install vuesax@next
 - npm install vue-moment
 
-El primer comando es para complemento gráfico y el segundo para dar formato a los campos de tipo date.
-
+El primer comando es para complemento gráfico y el segundo para dar formato a los campos de tipo date.El primer comando es para complemento gráfico y el segundo para dar formato a los campos de tipo date. 
+Ademas se utilizó la extension vetur en visual code, esto con el fin de darle estilo al código de vuejs, ver extensión en la siguiente imagen.
+![Duck](http://drive.google.com/uc?export=view&id=1mQZVqUXW7Duf73-8ifi8hhpTVvJ5jn9P)
+## Como utilizar la aplicacion
+* ### Ventana de login
+    Despues de haber ejecutado la aplicacion como anteriormente se explicó, se le mostrara una ventana tipo login donde simplemente se tendra que ingresar la cédula y contraseña para acceder a la ventada donde se mostrarán los tramites registrados.
+    Seguidamente se les mostrará como se ve la ventada.
+![Duck](http://drive.google.com/uc?export=view&id=1XJ1g-z4PmCV1OezIRmwiXwT2DOqyrU1I)
+* ### Ventana de trámites
+    Despues de haber ingresado correctamente, se le mostrará una ventana donde prodrá visualizar todos los tramites registrados, tambien podrá filtrar la información por estado, id, fecha de registro o cedula y tambien tendra la opción de editar cualquier tramite registrado con solo seleccionar alguno y luego darle al boton de editar, está acción lo redirigirá a la ventana de mantenimiento de tramites.
+    Seguidamente se les mostrará como se ve la ventada.
+![Duck](http://drive.google.com/uc?export=view&id=1YC0Z47yNmePg4QKAu12me6f18XZhvgsy)
+* ### Ventana de mantenimiento
+    Despues de haber seleccionado un tramite y persionar el boton editar de la ventana de tramites, se le mostrara la ventana de mantenimiento de tramites, donde en está se le mostará mas detalladamente la información del trámite y tambien podrá cambiarlé el estado a dicho trámite.
+    Seguidamente se les mostrará como se ve la ventada.
+![Duck](http://drive.google.com/uc?export=view&id=16Eswmx5moZTHEqbXXsgN4aLeCq-t7zjk)
 ## Paginas de guia para el desarrollo de la aplicacion.
->Nos guiamos con un minicurso en youtube que nos enseña a desarrollar aplicaciones web con vue.https://www.youtube.com/playlist?list=PLPl81lqbj-4J-gfAERGDCdOQtVgRhSvIT
+>Nos guiamos con un minicurso en youtube que nos enseña a desarrollar aplicaciones web con vue en https://www.youtube.com/playlist?list=PLPl81lqbj-4J-gfAERGDCdOQtVgRhSvIT
 >Tambien investigamos que era vue en https://es.vuejs.org/v2/guide/.
 >Para entender un poco sobre javaScrip leimos un poco en https://uniwebsidad.com/libros/javascript
 
