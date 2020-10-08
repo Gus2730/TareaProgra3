@@ -1,4 +1,4 @@
-# Resumen tarea 1 progra 3
+# Documentacion tarea 1 programación 3 grupo 6
 
 ## Lenguaje JavaScript [![N|Solid](http://drive.google.com/uc?export=view&id=1lDVNN84IUWBBXbpctFzX3pwfJlmaVu-d)]( https://uniwebsidad.com/libros/javascript)
     JavaScript es un lenguaje de programación que se utiliza principalmente para crear páginas web dinámicas.
