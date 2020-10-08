@@ -1,5 +1,4 @@
 # Resumen tarea 1 progra 3
-https://drive.google.com/file/d/1fA9enVfv8c9N3QNX54MHRd5dhvodSYK8/view?usp=sharing
 ## Lenguaje JavaScript [![N|Solid](http://drive.google.com/uc?export=view&id=1lDVNN84IUWBBXbpctFzX3pwfJlmaVu-d)]( https://uniwebsidad.com/libros/javascript)
     JavaScript es un lenguaje de programación que se utiliza principalmente para crear páginas web dinámicas.
 	Una página web dinámica es aquella que incorpora efectos como texto que aparece y desaparece, animaciones, acciones que se activan al pulsar botones y ventanas con mensajes de aviso al usuario.
@@ -35,7 +34,7 @@ https://drive.google.com/file/d/1fA9enVfv8c9N3QNX54MHRd5dhvodSYK8/view?usp=shari
 ![Duck](http://drive.google.com/uc?export=view&id=1zW-uwnfJwbtrkQMa4Ssi3ZOQJAv0ZKTs)
     
 #
-    Luego de esto tecleamos la tecla control y le damos un clic a cualquiera de las dos URLs  y se nos mostrará una ventana en nuestro navegador web como la siguiente imagen, en ella podremos visualizar los diseños generados para las vistas.
+    Luego de esto tecleamos la tecla control y le damos un click a cualquiera de las dos URLs  y se nos mostrará una ventana en nuestro navegador web como la siguiente imagen, en ella podremos visualizar los diseños generados para las vistas.
 ![Duck](http://drive.google.com/uc?export=view&id=1h5Y9kp9jKDPUX0j3_eyB9PE7TGzOLkwy)
 #
 Ademas se utilizaron las siguientes librerías como complemento para desarrollar ciertas funciones de forma más simple.
