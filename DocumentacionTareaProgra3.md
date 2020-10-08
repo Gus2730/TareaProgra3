@@ -1,4 +1,4 @@
-# Documentacion tarea 1 programación 3 grupo 6
+# Documentación tarea 1 programación 3 grupo 6
 
 ## Lenguaje JavaScript [![N|Solid](http://drive.google.com/uc?export=view&id=1lDVNN84IUWBBXbpctFzX3pwfJlmaVu-d)]( https://uniwebsidad.com/libros/javascript)
     JavaScript es un lenguaje de programación que se utiliza principalmente para crear páginas web dinámicas.
@@ -11,7 +11,7 @@
     
 ## Pasos utilizados para crear la aplicación y ejecutarla
 #
-    Para crear un proyecto de vue se necesita ejecutar una serie de comandos desde el powershell de windows, para ello deberemos ejecutar este programa como modo administrador con el fin de aplicar los comandos a mencionar:
+    Para crear un proyecto de vue se necesita ejecutar una serie de comandos desde el powershell de windows, para ello deberemos ejecutar este programa como modo administrador con el  fin de aplicar los comandos a mencionar:
 - npm install vue
 - npm install -g @vue/cli
 - npm install vue bootstrap-vue bootstrap
@@ -22,46 +22,43 @@
 - Set-ExecutionPolicy -Scope CurrentUser unrestricted
 
 #
-    Con estos comandos verificamos si la inatalaciones de los programas se realizaron de forma exitosa.
+    Con estos comandos verificamos si la instalaciones de los programas se realizaron de forma exitosa.
 - vue --version
 - npm --version
 - node --version
 
 #
-    Una vez ejecutado todos los comandos  anteriormente mencionados procedemos a abrir visual code y su terminal, luego para crear un proyecto de vue ejecutamos el siguiente comando "vue create laboratorio2", donde laboratorio2 es el nombre que se le asigna al proyecto. Luego de haberlo ejecutado, en la terminal se le desplegara dos opciones como las que se visualizan en la siguiente imagen.
+    Una vez ejecutado todos los comandos  anteriormente mencionados procedemos a abrir visual code y su terminal, luego para crear un proyecto de vue ejecutamos el siguiente comando  "vue create laboratorio2", donde laboratorio2 es el nombre que se le asigna al proyecto.  Luego de haberlo ejecutado, en la terminal se le desplegará dos opciones como las que se  visualizan en la siguiente imagen.
 ![Duck](http://drive.google.com/uc?export=view&id=1EEsOXnP2soofO6xQavlv4MZ8IQe4z_TT)
 #
-    Ahí es nada mas de seguir las instrucciones y agregar las dependencias que se vayan a usar. Luego de esto tomamos la carpeta donde se creó el proyecto y la arrastramos hacia visual code para que se carguen los archivos y así poderlos manipular. Con el comando "npm run serve" compilamos nuestro proyecto y asi se nos mostrará como la siguiente imagen:
+    Ahí es nada más de seguir las instrucciones y agregar las dependencias que se vayan a usar. Luego de esto tomamos la carpeta donde se creó el proyecto y la arrastramos hacia visual code para que se carguen los archivos y así poderlos manipular. Con el comando "npm run serve" compilamos nuestro proyecto y así se nos mostrará como la siguiente imagen:
 ![Duck](http://drive.google.com/uc?export=view&id=1zW-uwnfJwbtrkQMa4Ssi3ZOQJAv0ZKTs)
     
 #
     Luego de esto tecleamos la tecla control y le damos un click a cualquiera de las dos URLs  y se nos mostrará una ventana en nuestro navegador web como la siguiente imagen, en ella podremos visualizar los diseños generados para las vistas.
 ![Duck](http://drive.google.com/uc?export=view&id=1h5Y9kp9jKDPUX0j3_eyB9PE7TGzOLkwy)
 #
-Ademas se utilizaron las siguientes librerías como complemento para desarrollar ciertas funciones de forma más simple.
+Además, se utilizaron las siguientes librerías como complemento para desarrollar ciertas funciones de forma más simple.
 - npm install vuesax@next
 - npm install vue-moment
 
-El primer comando es para complemento gráfico y el segundo para dar formato a los campos de tipo date.El primer comando es para complemento gráfico y el segundo para dar formato a los campos de tipo date. 
-Ademas se utilizó la extension vetur en visual code, esto con el fin de darle estilo al código de vuejs, ver extensión en la siguiente imagen.
+El primer comando es para complemento gráfico y el segundo para dar formato a los campos de tipo date. 
+Además, se utilizó la extensión vetur en visual code, esto con el fin de darle estilo al código de vuejs, ver extensión en la siguiente imagen.
 ![Duck](http://drive.google.com/uc?export=view&id=1mQZVqUXW7Duf73-8ifi8hhpTVvJ5jn9P)
-## Como utilizar la aplicacion
+## Como utilizar la aplicación
 * ### Ventana de login
-    Despues de haber ejecutado la aplicacion como anteriormente se explicó, se le mostrara una ventana tipo login donde simplemente se tendra que ingresar la cédula y contraseña para acceder a la ventada donde se mostrarán los tramites registrados.
+    Después de haber ejecutado la aplicación como anteriormente se explicó, se le mostrara una ventana tipo login donde simplemente se tendrá que ingresar la cédula y contraseña para acceder a la ventada donde se mostrarán los trámites registrados.
     Seguidamente se les mostrará como se ve la ventada.
 ![Duck](http://drive.google.com/uc?export=view&id=1XJ1g-z4PmCV1OezIRmwiXwT2DOqyrU1I)
 * ### Ventana de trámites
-    Despues de haber ingresado correctamente, se le mostrará una ventana donde prodrá visualizar todos los tramites registrados, tambien podrá filtrar la información por estado, id, fecha de registro o cedula y tambien tendra la opción de editar cualquier tramite registrado con solo seleccionar alguno y luego darle al boton de editar, está acción lo redirigirá a la ventana de mantenimiento de tramites.
+    Después de haber ingresado correctamente, se le mostrará una ventana donde prodrá visualizar todos los trámites registrados, también podrá filtrar la información por estado, id, fecha de registro o cédula y también tendrá la opción de editar cualquier trámite registrado con solo seleccionar alguno y luego darle al boton de editar, está acción lo redirigirá a la ventana de mantenimiento de trámites.
     Seguidamente se les mostrará como se ve la ventada.
 ![Duck](http://drive.google.com/uc?export=view&id=1YC0Z47yNmePg4QKAu12me6f18XZhvgsy)
 * ### Ventana de mantenimiento
-    Despues de haber seleccionado un tramite y persionar el boton editar de la ventana de tramites, se le mostrara la ventana de mantenimiento de tramites, donde en está se le mostará mas detalladamente la información del trámite y tambien podrá cambiarlé el estado a dicho trámite.
+    Después de haber seleccionado un trámite y persionar el boton editar de la ventana de trámites, se le mostrará la ventana de mantenimiento de trámites, donde en esta se le mostará más detalladamente la información del trámite y también podrá cambiarlé el estado a dicho trámite.
     Seguidamente se les mostrará como se ve la ventada.
 ![Duck](http://drive.google.com/uc?export=view&id=16Eswmx5moZTHEqbXXsgN4aLeCq-t7zjk)
-## Paginas de guia para el desarrollo de la aplicacion.
+## Páginas de guia para el desarrollo de la aplicación.
 >Nos guiamos con un minicurso en youtube que nos enseña a desarrollar aplicaciones web con vue en https://www.youtube.com/playlist?list=PLPl81lqbj-4J-gfAERGDCdOQtVgRhSvIT
->Tambien investigamos que era vue en https://es.vuejs.org/v2/guide/.
->Para entender un poco sobre javaScrip leimos un poco en https://uniwebsidad.com/libros/javascript
-
-
-
+>También investigamos que era vue en https://es.vuejs.org/v2/guide/.
+>Para entender un poco sobre javaScrip, leímos un poco en https://uniwebsidad.com/libros/javascript
