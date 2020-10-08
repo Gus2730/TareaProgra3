@@ -1,0 +1,64 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Dillinger.md</title><style></style></head><body id="preview">
+<h1 class="code-line" data-line-start=0 data-line-end=1><a id="Resumen_tarea_1_progra_3_0"></a>Resumen tarea 1 progra 3</h1>
+<p class="has-line-data" data-line-start="1" data-line-end="2"><a href="https://drive.google.com/file/d/1fA9enVfv8c9N3QNX54MHRd5dhvodSYK8/view?usp=sharing">https://drive.google.com/file/d/1fA9enVfv8c9N3QNX54MHRd5dhvodSYK8/view?usp=sharing</a></p>
+<h2 class="code-line" data-line-start=2 data-line-end=3><a id="Lenguaje_JavaScript_NSolidhttpdrivegooglecomucexportviewid1lDVNN84IUWBBXbpctFzX3pwfJlmaVud_httpsuniwebsidadcomlibrosjavascript_2"></a>Lenguaje JavaScript <a href="https://uniwebsidad.com/libros/javascript"><img src="https://drive.google.com/uc?export=view&amp;id=1lDVNN84IUWBBXbpctFzX3pwfJlmaVu-d" alt="N|Solid"></a></h2>
+<pre><code>JavaScript es un lenguaje de programación que se utiliza principalmente para crear páginas web dinámicas.
+Una página web dinámica es aquella que incorpora efectos como texto que aparece y desaparece, animaciones, acciones que se activan al pulsar botones y ventanas con mensajes de aviso al usuario.
+Técnicamente, JavaScript es un lenguaje de programación interpretado, por lo que no es necesario compilar los programas para ejecutarlos. En otras palabras, los programas escritos con JavaScript se pueden probar directamente en cualquier navegador sin necesidad de procesos intermedios.
+</code></pre>
+<h2 class="code-line" data-line-start=6 data-line-end=7><a id="Framework_Vue_NSolidhttpdrivegooglecomucexportviewid1D47xfy4Tz1gu6RRvAhybamg5ai2WzY_ehttpsesvuejsorgv2guide_6"></a>Framework Vue <a href="https://es.vuejs.org/v2/guide/"><img src="https://drive.google.com/uc?export=view&amp;id=1D47xfy4Tz1gu6RRvAhybamg5ai2WzY_e" alt="N|Solid"></a></h2>
+<pre><code>Vue (pronunciado /vjuː/, como view) es un framework progresivo para construir interfaces de usuario. A diferencia de otros frameworks monolíticos, Vue está diseñado desde cero para ser utilizado incrementalmente. La librería central está enfocada solo en la capa de visualización, y es fácil de utilizar e integrar con otras librerías o proyectos existentes. Por otro lado, Vue también es perfectamente capaz de impulsar sofisticadas Single-Page Applications cuando se utiliza en combinación con herramientas modernas y librerías de apoyo.
+</code></pre>
+<h2 class="code-line" data-line-start=8 data-line-end=9><a id="Editor_Visual_Studio_Code_NSolidhttpdrivegooglecomucexportviewid1fA9enVfv8c9N3QNX54MHRd5dhvodSYK8httpscodevisualstudiocomwtmc_idDX_841432_8"></a>Editor Visual Studio Code <a href="https://code.visualstudio.com/?wt.mc_id=DX_841432"><img src="https://drive.google.com/uc?export=view&amp;id=1fA9enVfv8c9N3QNX54MHRd5dhvodSYK8" alt="N|Solid"></a></h2>
+<pre><code>Visual Studio Code es un editor de código optimizado con soporte para operaciones de desarrollo como depuración, ejecución de tareas y control de versiones. Su objetivo es proporcionar solo las herramientas que un desarrollador necesita para un ciclo rápido de código, compilación y depuración
+</code></pre>
+<h2 class="code-line" data-line-start=11 data-line-end=12><a id="Pasos_utilizados_para_crear_la_aplicacin_ejecutarla_y_utilizarla_11"></a>Pasos utilizados para crear la aplicación, ejecutarla y utilizarla</h2>
+<h1 class="code-line" data-line-start=12 data-line-end=13><a id="_12"></a></h1>
+<pre><code>Para crear un proyecto de vue se necesita ejecutar una serie de comandos desde el powershell de windows, para ello deberemos ejecutar este programa como modo administrador con el fin de aplicar los comandos a mencionar:
+</code></pre>
+<ul>
+<li class="has-line-data" data-line-start="14" data-line-end="15">npm install vue</li>
+<li class="has-line-data" data-line-start="15" data-line-end="16">npm install -g @vue/cli</li>
+<li class="has-line-data" data-line-start="16" data-line-end="18">npm install vue bootstrap-vue bootstrap</li>
+</ul>
+<h1 class="code-line" data-line-start=18 data-line-end=19><a id="_18"></a></h1>
+<pre><code>Los siguientes comandos se utilizan para poder habilitar la ejecución de scripts desde la terminal que posee integrado Visual code, ya que hay ciertos o la mayoría de comando usados para crear el proyecto no pueden ser ejecutados ya que poseen restricciones por parte del sistema operativo, al ejecutarlos presionamos la tecla &quot;s&quot; y un enter para habilitar estas opciones.
+</code></pre>
+<ul>
+<li class="has-line-data" data-line-start="20" data-line-end="21">Set-ExecutionPolicy -Scope LocalMachine unrestricted</li>
+<li class="has-line-data" data-line-start="21" data-line-end="23">Set-ExecutionPolicy -Scope CurrentUser unrestricted</li>
+</ul>
+<h1 class="code-line" data-line-start=23 data-line-end=24><a id="_23"></a></h1>
+<pre><code>Con estos comandos verificamos si la inatalaciones de los programas se realizaron de forma exitosa.
+</code></pre>
+<ul>
+<li class="has-line-data" data-line-start="25" data-line-end="26">vue --version</li>
+<li class="has-line-data" data-line-start="26" data-line-end="27">npm --version</li>
+<li class="has-line-data" data-line-start="27" data-line-end="29">node --version</li>
+</ul>
+<h1 class="code-line" data-line-start=29 data-line-end=30><a id="_29"></a></h1>
+<pre><code>Una vez ejecutado todos los comandos  anteriormente mencionados procedemos a abrir visual code y su terminal, luego para crear un proyecto de vue ejecutamos el siguiente comando &quot;vue create laboratorio2&quot;, donde laboratorio2 es el nombre que se le asigna al proyecto. Luego de haberlo ejecutado, en la terminal se le desplegara dos opciones como las que se visualizan en la siguiente imagen.
+</code></pre>
+<p class="has-line-data" data-line-start="31" data-line-end="32"><img src="https://drive.google.com/uc?export=view&amp;id=1EEsOXnP2soofO6xQavlv4MZ8IQe4z_TT" alt="Duck"></p>
+<h1 class="code-line" data-line-start=32 data-line-end=33><a id="_32"></a></h1>
+<pre><code>Ahí es nada mas de seguir las instrucciones y agregar las dependencias que se vayan a usar. Luego de esto tomamos la carpeta donde se creó el proyecto y la arrastramos hacia visual code para que se carguen los archivos y así poderlos manipular. Con el comando &quot;npm run serve&quot; compilamos nuestro proyecto y asi se nos mostrará como la siguiente imagen:
+</code></pre>
+<p class="has-line-data" data-line-start="34" data-line-end="35"><img src="https://drive.google.com/uc?export=view&amp;id=1zW-uwnfJwbtrkQMa4Ssi3ZOQJAv0ZKTs" alt="Duck"></p>
+<h1 class="code-line" data-line-start=36 data-line-end=37><a id="_36"></a></h1>
+<pre><code>Luego de esto tecleamos la tecla control y le damos un clic a cualquiera de las dos URLs  y se nos mostrará una ventana en nuestro navegador web como la siguiente imagen, en ella podremos visualizar los diseños generados para las vistas.
+</code></pre>
+<p class="has-line-data" data-line-start="38" data-line-end="39"><img src="https://drive.google.com/uc?export=view&amp;id=1h5Y9kp9jKDPUX0j3_eyB9PE7TGzOLkwy" alt="Duck"></p>
+<h1 class="code-line" data-line-start=39 data-line-end=40><a id="_39"></a></h1>
+<p class="has-line-data" data-line-start="40" data-line-end="41">Ademas se utilizaron las siguientes librerías como complemento para desarrollar ciertas funciones de forma más simple.</p>
+<ul>
+<li class="has-line-data" data-line-start="41" data-line-end="42">npm install <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="691f1c0c1a081129070c111d">[email&#160;protected]</a></li>
+<li class="has-line-data" data-line-start="42" data-line-end="44">npm install vue-moment</li>
+</ul>
+<p class="has-line-data" data-line-start="44" data-line-end="45">El primer comando es para complemento gráfico y el segundo para dar formato a los campos de tipo date.</p>
+<h2 class="code-line" data-line-start=46 data-line-end=47><a id="Paginas_de_guia_para_el_desarrollo_de_la_aplicacion_46"></a>Paginas de guia para el desarrollo de la aplicacion.</h2>
+<blockquote>
+<p class="has-line-data" data-line-start="47" data-line-end="50">Nos guiamos con un minicurso en youtube que nos enseña a desarrollar aplicaciones web con vue.<a href="https://www.youtube.com/playlist?list=PLPl81lqbj-4J-gfAERGDCdOQtVgRhSvIT">https://www.youtube.com/playlist?list=PLPl81lqbj-4J-gfAERGDCdOQtVgRhSvIT</a><br>
+Tambien investigamos que era vue en <a href="https://es.vuejs.org/v2/guide/">https://es.vuejs.org/v2/guide/</a>.<br>
+Para entender un poco sobre javaScrip leimos un poco en <a href="https://uniwebsidad.com/libros/javascript">https://uniwebsidad.com/libros/javascript</a></p>
+</blockquote>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body></html>
