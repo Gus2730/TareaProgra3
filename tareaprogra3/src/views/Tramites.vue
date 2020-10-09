@@ -316,12 +316,6 @@ export default {
           "Digite la fecha con el formato yyyy-mm-dd";
       }
     },
-    showModal() {
-      this.$refs["my-modal"].show();
-    },
-    hideModal() {
-      this.$refs["my-modal"].hide();
-    },
     alertError(mensaje) {
       Swal.fire({
         icon: "error",
