@@ -17,8 +17,6 @@ export default new Vuex.Store({
     SET_TOKEN1: ({commit, state}, payload) => {
      commit('SET_TOKEN', payload);
      alert(payload);
-    // //  console.log(payload)
-    //  return state
     }
   },
   modules: {
