@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+//import Tramite from '@/views/Tramites.vue'
 
 
 Vue.use(VueRouter)
@@ -8,19 +9,19 @@ const routes = [
   {
     path: '/Tramites',
     name: 'Tramites',
-    component: () => import('../views/Tramites.vue')
+    component: () => import('@/views/Tramites.vue')
   },
   {
     path: '/Mantenimiento',
     name: 'Mantenimiento',
 
-    component: () => import('../views/Mantenimiento.vue')
+    component: () => import('@/views/Mantenimiento.vue')
   },
   {
     path: '/',
     name:'Login',
     
-    component: () => import('../views/Login.vue')
+    component: () => import('@/views/Login.vue')
   },
 ]
 
