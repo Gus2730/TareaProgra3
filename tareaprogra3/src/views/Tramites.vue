@@ -283,7 +283,7 @@ export default {
     },
     volverLogin() {
       //window.location.href = "/";
-      this.$router.push('Login');
+      this.$router.push('/');
     },
     editar() {
       this.datoSelect = null;
