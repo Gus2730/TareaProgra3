@@ -137,7 +137,9 @@ export default {
           sessionStorage.setItem("user1", JSON.stringify(data.usuario));
           if (estado1 == true) {
             console.log("Estado: " + estado1);
-            window.location.href = "/Tramites";
+            //<router-link to="/Tramites"></router-link>
+            this.$router.push('Tramites');
+            //window.location.href = "/Tramites";
           }else{
             alertError("Ocurrió un error al ingresar, por favor verifique los datos ingresados o su conexión a internet!");
           }

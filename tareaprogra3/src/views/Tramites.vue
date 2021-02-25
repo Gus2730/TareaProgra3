@@ -282,14 +282,16 @@ export default {
          );
     },
     volverLogin() {
-      window.location.href = "/";
+      //window.location.href = "/";
+      this.$router.push('Login');
     },
     editar() {
       this.datoSelect = null;
       this.datoSelect = this.selected;
       if (this.datoSelect) {
         sessionStorage.setItem("user", JSON.stringify(this.datoSelect));
-        window.location.href = "/Mantenimiento";
+        //window.location.href = "/Mantenimiento";
+        this.$router.push('Mantenimiento');
       } else {
         this.alertError("Seleccione un objeto para editarlo");
       }

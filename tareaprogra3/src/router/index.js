@@ -14,20 +14,18 @@ const routes = [
   {
     path: '/Mantenimiento',
     name: 'Mantenimiento',
-
     component: () => import('@/views/Mantenimiento.vue')
   },
   {
     path: '/',
     name:'Login',
-    
     component: () => import('@/views/Login.vue')
   },
 ]
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+ // base: process.env.BASE_URL,
   routes
 })
 

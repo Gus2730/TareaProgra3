@@ -289,7 +289,8 @@ export default {
       });
     },
     volverTramites() {
-      window.location.href = "/Tramites";
+      //window.location.href = "/Tramites";
+      this.$router.push('Tramites');
     },
     ConfirmacionAlertGuardar(data) {
       Swal.fire({
