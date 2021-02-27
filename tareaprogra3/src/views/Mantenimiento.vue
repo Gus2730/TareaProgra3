@@ -225,7 +225,7 @@ export default {
       if (estadoID != null) {
         
         var respon;
-        fetch("http://localhost:8099/tramites_cambio_estado/", {
+        fetch("http://161.22.46.230:8099/tramites_cambio_estado/", {
           method: "POST",
           body: JSON.stringify({
             tramiteEstado: {
@@ -360,7 +360,7 @@ export default {
       this.tokens = sessionStorage.getItem("tok");
       this.usu = JSON.parse(sessionStorage.getItem("user1"));
       this.tra = JSON.parse(sessionStorage.getItem("user"));
-      fetch("http://localhost:8099/tramites_estados", {
+      fetch("http://161.22.46.230:8099/tramites_estados", {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
           Accept: "application/json",

@@ -104,7 +104,7 @@ export default {
         type: this.type,
       });
       let time = 1000;
-      fetch("http://localhost:8099/login/login", {
+      fetch("http://161.22.46.230:8099/login/login", {
         method: "POST",
         body: JSON.stringify({
           cedula: this.cedula,

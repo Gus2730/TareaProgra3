@@ -230,7 +230,7 @@ export default {
       } else if (this.value == "fecha") {
         textfiltro = "/fecha/" + this.filtro;
       }
-      fetch("http://localhost:8099/tramites_registrados" + textfiltro, {
+      fetch("http://161.22.46.230:8099/tramites_registrados" + textfiltro, {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
           Accept: "application/json",
@@ -336,6 +336,7 @@ export default {
         confirmButtonText: `OK`,
       }).then(() => {
         window.location.href = "/";
+        this.$router.push('/');
       });
     },
     ConfirmacionAlertSalir() {
